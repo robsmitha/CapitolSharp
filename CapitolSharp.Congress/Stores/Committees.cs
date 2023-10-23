@@ -8,8 +8,7 @@ namespace CapitolSharp.Congress.Stores
 {
     public class Committees : DataStoreAccessor, ICommittees
     {
-        public Committees(string apiKey, IMapper mapper)
-            : base(apiKey, mapper)
+        public Committees(string apiKey) : base(apiKey)
         {
 
         }

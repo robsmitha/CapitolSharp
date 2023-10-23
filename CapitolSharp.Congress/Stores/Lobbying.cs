@@ -8,8 +8,7 @@ namespace CapitolSharp.Congress.Stores
 {
     public class Lobbying : DataStoreAccessor, ILobbying
     {
-        public Lobbying(string apiKey, IMapper mapper)
-            : base(apiKey, mapper)
+        public Lobbying(string apiKey) : base(apiKey)
         {
 
         }

@@ -7,8 +7,7 @@ namespace CapitolSharp.Congress.Stores
 {
     public class Statements : DataStoreAccessor, IStatements
     {
-        public Statements(string apiKey, IMapper mapper)
-            : base(apiKey, mapper)
+        public Statements(string apiKey) : base(apiKey)
         {
 
         }

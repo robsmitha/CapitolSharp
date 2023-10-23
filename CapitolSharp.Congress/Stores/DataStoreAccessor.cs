@@ -1,28 +1,28 @@
 ﻿using AutoMapper;
+using System.Reflection;
 using System.Text.Json;
 
 namespace CapitolSharp.Congress.Stores
 {
     public abstract class DataStoreAccessor
     {
-        protected HttpClient _client;
-        protected IMapper _mapper;
+        private readonly string _apiKey;
+        protected readonly IMapper _mapper;
 
-        public DataStoreAccessor(string apiKey, IMapper mapper)
+        public DataStoreAccessor(string apiKey)
         {
-            _client = new HttpClient
-            {
-                BaseAddress = new Uri("https://api.propublica.org/congress/v1")
-            };
-            _client.DefaultRequestHeaders.Add("X-API-Key", apiKey);
-            _mapper = mapper;
+            _apiKey = apiKey;
+
+            var configuration = new MapperConfiguration(cfg => cfg.AddMaps(Assembly.GetExecutingAssembly()));
+            _mapper = configuration.CreateMapper();
         }
 
         public virtual async Task<T?> SendAsync<T>(string function)
         {
             try
             {
-                var response = await _client.GetAsync(function);
+                using var client = CreateCongressApiClient(_apiKey);
+                var response = await client.GetAsync(function);
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
@@ -38,6 +38,16 @@ namespace CapitolSharp.Congress.Stores
                 // TODO: Edge cases (ProPublic Rate Limit, Transient Errors, etc.)
                 throw e;
             }
+        }
+
+        private static HttpClient CreateCongressApiClient(string apiKey)
+        {
+            var client = new HttpClient
+            {
+                BaseAddress = new Uri("https://api.propublica.org/congress/v1")
+            };
+            client.DefaultRequestHeaders.Add("X-API-Key", apiKey);
+            return client;
         }
     }
 }

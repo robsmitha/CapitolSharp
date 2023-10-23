@@ -9,17 +9,12 @@ namespace CapitolSharp.Congress
     {
         public CongressApiClient(string apiKey)
         {
-            var configuration = new MapperConfiguration(cfg => cfg.AddMaps(Assembly.GetExecutingAssembly()));
-            var mapper = configuration.CreateMapper();
-
-            // TODO: Extension method
-
-            Bills = new Bills(apiKey, mapper);
-            Committees = new Committees(apiKey, mapper);
-            Lobbying = new Lobbying(apiKey, mapper);
-            Members = new Members(apiKey, mapper);
-            Statements = new Statements(apiKey, mapper);
-            Votes = new Votes(apiKey, mapper);
+            Bills = new Bills(apiKey);
+            Committees = new Committees(apiKey);
+            Lobbying = new Lobbying(apiKey);
+            Members = new Members(apiKey);
+            Statements = new Statements(apiKey);
+            Votes = new Votes(apiKey);
         }
 
         public IBills Bills { get; private set; }
