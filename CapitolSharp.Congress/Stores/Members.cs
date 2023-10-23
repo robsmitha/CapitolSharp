@@ -1,17 +1,17 @@
 ﻿using AutoMapper;
-using CapitolSharp.DataStore;
 using CapitolSharp.Congress.Models;
 using CapitolSharp.Congress.Responses.Members;
 using CapitolSharp.Congress.Responses;
 using CapitolSharp.Congress.Responses.Statements;
 using CapitolSharp.Congress.Responses.Votes;
+using CapitolSharp.Congress.Interfaces;
 
 namespace CapitolSharp.Congress.Stores
 {
     public class Members : DataStoreAccessor, IMembers
     {
-        public Members(IHttpClientFactory httpClientFactory, IMapper mapper)
-            : base(httpClientFactory, mapper)
+        public Members(string apiKey, IMapper mapper)
+            : base(apiKey, mapper)
         {
 
         }

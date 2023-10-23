@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using CapitolSharp.DataStore;
 using CapitolSharp.Congress.Models;
 using CapitolSharp.Congress.Responses.Bills;
+using CapitolSharp.Congress.Interfaces;
 
 namespace CapitolSharp.Congress.Stores
 {
     public class Bills : DataStoreAccessor, IBills
     {
-        public Bills(IHttpClientFactory httpClientFactory, IMapper mapper)
-            : base(httpClientFactory, mapper)
+        public Bills(string apiKey, IMapper mapper)
+            : base(apiKey, mapper)
         {
 
         }

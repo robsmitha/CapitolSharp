@@ -1,15 +1,15 @@
-﻿using CapitolSharp.DataStore;
-using CapitolSharp.Congress.Models;
+﻿using CapitolSharp.Congress.Models;
 using CapitolSharp.Congress.Responses.Committee;
 using CapitolSharp.Congress.Responses;
 using AutoMapper;
+using CapitolSharp.Congress.Interfaces;
 
 namespace CapitolSharp.Congress.Stores
 {
     public class Committees : DataStoreAccessor, ICommittees
     {
-        public Committees(IHttpClientFactory httpClientFactory, IMapper mapper)
-            : base(httpClientFactory, mapper)
+        public Committees(string apiKey, IMapper mapper)
+            : base(apiKey, mapper)
         {
 
         }

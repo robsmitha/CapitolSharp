@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CapitolSharp.Congress
+namespace CapitolSharp.Congress.Interfaces
 {
     public interface IVotes
     {

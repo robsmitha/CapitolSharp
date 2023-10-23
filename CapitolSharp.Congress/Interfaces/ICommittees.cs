@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapitolSharp.Congress
+namespace CapitolSharp.Congress.Interfaces
 {
     public interface ICommittees
     {

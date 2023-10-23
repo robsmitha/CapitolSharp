@@ -2,14 +2,14 @@
 using CapitolSharp.Congress.Models;
 using CapitolSharp.Congress.Responses.Lobbying;
 using CapitolSharp.Congress.Responses;
-using CapitolSharp.DataStore;
+using CapitolSharp.Congress.Interfaces;
 
 namespace CapitolSharp.Congress.Stores
 {
     public class Lobbying : DataStoreAccessor, ILobbying
     {
-        public Lobbying(IHttpClientFactory httpClientFactory, IMapper mapper)
-            : base(httpClientFactory, mapper)
+        public Lobbying(string apiKey, IMapper mapper)
+            : base(apiKey, mapper)
         {
 
         }

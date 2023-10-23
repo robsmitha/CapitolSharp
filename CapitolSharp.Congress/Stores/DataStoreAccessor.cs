@@ -1,17 +1,20 @@
 ﻿using AutoMapper;
-using System.Net;
 using System.Text.Json;
 
-namespace CapitolSharp.DataStore
+namespace CapitolSharp.Congress.Stores
 {
     public abstract class DataStoreAccessor
     {
-        protected IHttpClientFactory _httpClientFactory;
+        protected HttpClient _client;
         protected IMapper _mapper;
 
-        public DataStoreAccessor(IHttpClientFactory httpClientFactory, IMapper mapper)
+        public DataStoreAccessor(string apiKey, IMapper mapper)
         {
-            _httpClientFactory = httpClientFactory;
+            _client = new HttpClient
+            {
+                BaseAddress = new Uri("https://api.propublica.org/congress/v1")
+            };
+            _client.DefaultRequestHeaders.Add("X-API-Key", apiKey);
             _mapper = mapper;
         }
 
@@ -19,8 +22,7 @@ namespace CapitolSharp.DataStore
         {
             try
             {
-                using var client = _httpClientFactory.CreateClient(DataStoreConstants.CONGRESS_API_CLIENT);
-                var response = await client.GetAsync(function);
+                var response = await _client.GetAsync(function);
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
@@ -28,7 +30,7 @@ namespace CapitolSharp.DataStore
                 }
                 else
                 {
-                    throw new HttpRequestException($"{DataStoreConstants.CONGRESS_API_CLIENT} returned status code {response.StatusCode}");
+                    throw new HttpRequestException($"{function} returned status code {response.StatusCode}");
                 }
             }
             catch (HttpRequestException e)
