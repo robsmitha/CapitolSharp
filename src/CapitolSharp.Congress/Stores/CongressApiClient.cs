@@ -1,23 +1,29 @@
 ﻿using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace CapitolSharp.Congress.Stores
 {
-    public abstract class DataStoreAccessor
+    public interface ICongressApiClient
+    {
+        Task<T?> SendAsync<T>(string function);
+    }
+
+    public class CongressApiClient : ICongressApiClient
     {
         private readonly string _apiKey;
-        protected readonly IMapper _mapper;
 
-        public DataStoreAccessor(string apiKey)
+        public CongressApiClient(string apiKey)
         {
             _apiKey = apiKey;
-
-            var configuration = new MapperConfiguration(cfg => cfg.AddMaps(Assembly.GetExecutingAssembly()));
-            _mapper = configuration.CreateMapper();
         }
 
-        public virtual async Task<T?> SendAsync<T>(string function)
+        public async Task<T?> SendAsync<T>(string function)
         {
             try
             {
@@ -36,7 +42,7 @@ namespace CapitolSharp.Congress.Stores
             catch (HttpRequestException e)
             {
                 // TODO: Edge cases (ProPublic Rate Limit, Transient Errors, etc.)
-                throw e;
+                throw;
             }
         }
 

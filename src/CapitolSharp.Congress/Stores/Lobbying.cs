@@ -2,26 +2,24 @@
 using CapitolSharp.Congress.Models;
 using CapitolSharp.Congress.Responses.Lobbying;
 using CapitolSharp.Congress.Responses;
-using CapitolSharp.Congress.Interfaces;
 
 namespace CapitolSharp.Congress.Stores
 {
-    public class Lobbying : DataStoreAccessor, ILobbying
+    public interface ILobbying
     {
-        public Lobbying(string apiKey) : base(apiKey)
-        {
-
-        }
-
+        Task<List<LobbyingRepresentationModel>> GetRecentLobbyingRepresentationsAsync();
+    }
+    public class Lobbying(ICongressApiClient client, IMapper mapper) : ILobbying
+    {
         public async Task<List<LobbyingRepresentationModel>> GetRecentLobbyingRepresentationsAsync()
         {
-            var response = await SendAsync<Response<IEnumerable<LobbyingListResult>>>($"lobbying/latest.json");
-            if (response?.results == null) return new List<LobbyingRepresentationModel>();
+            var response = await client.SendAsync<Response<IEnumerable<LobbyingListResult>>>($"lobbying/latest.json");
+            if (response?.results == null) return [];
 
             var data = response.results.FirstOrDefault()?.lobbying_representations;
             return data != null
-                ? _mapper.Map<List<LobbyingRepresentationModel>>(data)
-                : new List<LobbyingRepresentationModel>();
+                ? mapper.Map<List<LobbyingRepresentationModel>>(data)
+                : [];
         }
     }
 }
