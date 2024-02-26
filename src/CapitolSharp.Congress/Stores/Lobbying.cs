@@ -13,7 +13,7 @@ namespace CapitolSharp.Congress.Stores
     {
         public async Task<List<LobbyingRepresentationModel>> GetRecentLobbyingRepresentationsAsync()
         {
-            var response = await client.SendAsync<Response<IEnumerable<LobbyingListResult>>>($"lobbying/latest.json");
+            var response = await client.SendAsync<Response<IEnumerable<LobbyingListResult>>>($"/lobbying/latest.json");
             if (response?.results == null) return [];
 
             var data = response.results.FirstOrDefault()?.lobbying_representations;

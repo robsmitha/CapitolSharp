@@ -21,6 +21,6 @@ namespace CapitolSharp.Congress
         public ILobbying Lobbying => _lobbying ??= new Lobbying(api, mapper);
         public IMembers Members => _members ??= new Members(api, mapper);
         public IStatements Statements => _statements ??= new Statements(api, mapper);
-        public IVotes Votes => _votes ?? new Votes(api, mapper);
+        public IVotes Votes => _votes ??= new Votes(api, mapper);
     }
 }

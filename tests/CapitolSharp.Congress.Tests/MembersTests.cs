@@ -3,14 +3,14 @@ using CapitolSharp.Congress.Tests.Fixtures;
 
 namespace CapitolSharp.Congress.Tests
 {
-    public class MembersTests(CapitolSharpCongressFixture fixture) : IClassFixture<CapitolSharpCongressFixture>
+    public class MembersTests(CapitolSharpCongressFixture fixture) 
+        : IClassFixture<CapitolSharpCongressFixture>
     {
-        [Theory]
-        [InlineData("house")]
-        public async void Members_GetMembersAsync(string chamber)
+        [Fact]
+        public async Task Members_GetMembersAsync()
         {
             var sut = new Members(fixture.CongressApiMock.Object, fixture.Mapper);
-            var result = await sut.GetMembersAsync("1", chamber);
+            var result = await sut.GetMembersAsync("1", "house");
             Assert.True(result?.Count > 0);
         }
     }

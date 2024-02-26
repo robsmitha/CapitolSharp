@@ -3,13 +3,11 @@ using CapitolSharp.Congress.Responses.Members;
 using CapitolSharp.Congress.Responses;
 using CapitolSharp.Congress.Stores;
 using Moq;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using CapitolSharp.Congress.Responses.Bills;
+using CapitolSharp.Congress.Responses.Votes;
+using CapitolSharp.Congress.Responses.Statements;
+using CapitolSharp.Congress.Responses.Committee;
+using CapitolSharp.Congress.Responses.Lobbying;
 
 namespace CapitolSharp.Congress.Tests.Fixtures
 {
@@ -26,10 +24,27 @@ namespace CapitolSharp.Congress.Tests.Fixtures
 
         public async Task InitializeAsync()
         {
-            using var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync($"https://smitha-cdn.s3.us-east-2.amazonaws.com/CapitolSharp/TestData/members-house.json");
-            CongressApiMock.Setup(m => m.SendAsync<Response<List<MemberListResult>>>(It.IsRegex(@"\/house\/members\.json")))
-                .ReturnsAsync(JsonConvert.DeserializeObject<Response<List<MemberListResult>>>(json));
+            // Bills
+            await CongressApiMock.MockResponse<BillsResponse<List<UpcomingBills>>>(@"bills/upcoming/(?i:house|senate)\.json", "bills-upcoming");
+            await CongressApiMock.MockResponse<BillsResponse<List<Bill>>>(@"^\w+/bills/\w+\.json$", "bills-bill");
+
+            // Committee
+            await CongressApiMock.MockResponse<Response<IEnumerable<CommitteeResult>>>(@"^\w+/\w+/committees/\w+\.json$", "committees-committee");
+            await CongressApiMock.MockResponse<Response<IEnumerable<CommitteeListResult>>>(@"^\w+/\w+/committees\.json$", "committees-committees");
+
+            // Lobbying
+            await CongressApiMock.MockResponse<Response<IEnumerable<LobbyingListResult>>>(@"^\/lobbying\/latest\.json$", "lobbying-latest");
+
+            // Members
+            await CongressApiMock.MockResponse<Response<List<MemberListResult>>>(@"\w+/(?i:house|senate)/members\.json", "members-members");
+
+            // Statements
+            await CongressApiMock.MockResponse<StatementResponse<IEnumerable<Statement>>>(@"^\/statements\/latest\.json$", "statements-latest");
+            await CongressApiMock.MockResponse<StatementResponse<IEnumerable<Statement>>>(@"^/statements/search\.json\?query=.+$", "statements-search");
+
+            // Votes
+            await CongressApiMock.MockResponse<Response<RecentVotesResult>>(@"^\w+/votes/recent.json$", "votes-recent");
+            await CongressApiMock.MockResponse<Response<RollCallVoteResult>>(@"^\w+/\w+/sessions/\w+/votes/\w+\.json$", "votes-roll-call-vote");
         }
 
         public Task DisposeAsync() => Task.CompletedTask;

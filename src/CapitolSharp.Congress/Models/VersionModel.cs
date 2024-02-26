@@ -17,7 +17,7 @@ namespace CapitolSharp.Congress.Models
         {
             public Mapping()
             {
-                CreateMap<Version, VersionModel>();
+                CreateMap<Responses.Bills.Version, VersionModel>();
             }
         }
     }

@@ -18,7 +18,7 @@ namespace CapitolSharp.Congress.Models
         {
             public Mapping()
             {
-                CreateMap<Action, ActionModel>();
+                CreateMap<Responses.Bills.Action, ActionModel>();
             }
         }
     }
