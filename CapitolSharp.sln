@@ -3,7 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapitolSharp.Congress", "CapitolSharp.Congress\CapitolSharp.Congress.csproj", "{18D55947-50AD-45ED-B715-94CE19AF2B01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapitolSharp.Congress", "src\CapitolSharp.Congress\CapitolSharp.Congress.csproj", "{18D55947-50AD-45ED-B715-94CE19AF2B01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1C5BE147-220D-43E3-AB49-47A8CA824C8D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{9D7ECAAE-E1F7-47C0-8CEC-7F446D1D266E}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\ci.yml = .github\workflows\ci.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +25,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{18D55947-50AD-45ED-B715-94CE19AF2B01} = {1C5BE147-220D-43E3-AB49-47A8CA824C8D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0702F082-DDCE-4F67-AFE8-65E8DF99B5CA}
