@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace CapitolSharp.Congress.Tests
 {
-    public class LobbyingTests(CapitolSharpCongressFixture fixture)
-        : IClassFixture<CapitolSharpCongressFixture>
+    public class LobbyingTests(CapitolSharpCongressFixture fixture) : CongressApiTest
     {
+        private readonly Lobbying sut = new(fixture.CongressApiMock.Object, fixture.Mapper);
+        
         [Fact]
-        public async Task Lobbying_GetRecentLobbyingRepresentationsAsync()
+        public async Task GetRecentLobbyingRepresentationsAsync()
         {
-            var sut = new Lobbying(fixture.CongressApiMock.Object, fixture.Mapper);
             var result = await sut.GetRecentLobbyingRepresentationsAsync();
             Assert.True(result?.Count > 0);
         }

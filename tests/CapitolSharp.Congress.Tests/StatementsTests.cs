@@ -8,21 +8,20 @@ using System.Threading.Tasks;
 
 namespace CapitolSharp.Congress.Tests
 {
-    public class StatementsTests(CapitolSharpCongressFixture fixture)
-        : IClassFixture<CapitolSharpCongressFixture>
+    public class StatementsTests(CapitolSharpCongressFixture fixture) : CongressApiTest
     {
+        private readonly Statements sut = new(fixture.CongressApiMock.Object, fixture.Mapper);
+
         [Fact]
-        public async Task Statements_GetRecentStatementsAsync()
+        public async Task GetRecentStatementsAsync()
         {
-            var sut = new Statements(fixture.CongressApiMock.Object, fixture.Mapper);
             var result = await sut.GetRecentStatementsAsync();
             Assert.True(result?.Count > 0);
         }
 
         [Fact]
-        public async Task Statements_SearchStatementsAsync()
+        public async Task SearchStatementsAsync()
         {
-            var sut = new Statements(fixture.CongressApiMock.Object, fixture.Mapper);
             var result = await sut.SearchStatementsAsync("term");
             Assert.True(result?.Count > 0);
         }

@@ -18,32 +18,12 @@ namespace CapitolSharp.Congress.Stores
         Task<List<VoteModel>> GetMemberVotesAsync(string memberId);
         Task<List<BillModel>> GetMemberBillsAsync(string memberId);
         Task<List<BillModel>> GetMemberCosponsoredBillsAsync(string memberId);
-        Task<List<StatementModel>> GetMemberStatementsAsync(string memberId, string congress);
+        Task<List<StatementModel>> GetMemberStatementsAsync(string memberId);
         Task<List<ExpensesModel>> GetMemberExpensesAsync(string id, int year, int quarter);
         Task<List<ExplanationModel>> GetMemberExplanationsAsync(string memberId, string congress);
     }
     public class Members(ICongressApiClient client, IMapper mapper) : IMembers
     {
-        public async Task<CompareVotePositionsModel> CompareVotePositionsAsync(string firstMemberId, string secondMemberId, string congress, string chamber)
-        {
-            var response = await client.SendAsync<Response<List<CompareVotePositionsResult>>>($"members/{firstMemberId}/votes/{secondMemberId}/{congress}/{chamber}.json");
-            if (response?.results == null) return new CompareVotePositionsModel();
-            var data = response?.results.FirstOrDefault();
-            return data != null
-                ? mapper.Map<CompareVotePositionsModel>(data)
-                : new CompareVotePositionsModel();
-        }
-
-        public async Task<List<MemberModel>> GetCurrentSenateMembersAsync(string chamber, string state)
-        {
-            var response = await client.SendAsync<Response<List<MemberListItem>>>($"members/{chamber}/{state}/current.json");
-            if (response?.results == null) return [];
-            var data = response?.results;
-            return data != null
-                ? mapper.Map<List<MemberModel>>(response?.results)
-                : [];
-        }
-
         public async Task<MemberModel> GetMemberAsync(string memberId)
         {
             var response = await client.SendAsync<Response<List<Member>>>($"members/{memberId}.json");
@@ -61,6 +41,26 @@ namespace CapitolSharp.Congress.Stores
             var data = response?.results.Select(m => m.members).FirstOrDefault();
             return data != null
                 ? mapper.Map<List<MemberModel>>(data)
+                : [];
+        }
+
+        public async Task<CompareVotePositionsModel> CompareVotePositionsAsync(string firstMemberId, string secondMemberId, string congress, string chamber)
+        {
+            var response = await client.SendAsync<Response<List<CompareVotePositionsResult>>>($"members/{firstMemberId}/votes/{secondMemberId}/{congress}/{chamber}.json");
+            if (response?.results == null) return new CompareVotePositionsModel();
+            var data = response?.results.FirstOrDefault();
+            return data != null
+                ? mapper.Map<CompareVotePositionsModel>(data)
+                : new CompareVotePositionsModel();
+        }
+
+        public async Task<List<MemberModel>> GetCurrentSenateMembersAsync(string chamber, string state)
+        {
+            var response = await client.SendAsync<Response<List<MemberListItem>>>($"members/{chamber}/{state}/current.json");
+            if (response?.results == null) return [];
+            var data = response?.results;
+            return data != null
+                ? mapper.Map<List<MemberModel>>(response?.results)
                 : [];
         }
 
@@ -86,7 +86,7 @@ namespace CapitolSharp.Congress.Stores
 
         public async Task<List<VoteModel>> GetMemberVotesAsync(string memberId)
         {
-            var response = await client.SendAsync<Response<IEnumerable<MemberVotesResult>>>($"congress/members/{memberId}/votes");
+            var response = await client.SendAsync<Response<IEnumerable<MemberVotesResult>>>($"members/{memberId}/votes.json");
             if (response?.results == null) return [];
             var data = response.results.FirstOrDefault()?.votes;
             return data != null
@@ -96,7 +96,7 @@ namespace CapitolSharp.Congress.Stores
 
         public async Task<List<BillModel>> GetMemberBillsAsync(string memberId)
         {
-            var response = await client.SendAsync<Response<IEnumerable<MemberBillsResult>>>($"congress/members/{memberId}/bills/introduced");
+            var response = await client.SendAsync<Response<IEnumerable<MemberBillsResult>>>($"members/{memberId}/bills/introduced.json");
             if (response?.results == null) return [];
             var data = response.results.FirstOrDefault()?.bills;
             return data != null
@@ -106,7 +106,7 @@ namespace CapitolSharp.Congress.Stores
 
         public async Task<List<BillModel>> GetMemberCosponsoredBillsAsync(string memberId)
         {
-            var response = await client.SendAsync<Response<IEnumerable<MemberBillsResult>>>($"congress/members/{memberId}/bills/cosponsored");
+            var response = await client.SendAsync<Response<IEnumerable<MemberBillsResult>>>($"members/{memberId}/bills/cosponsored.json");
             if (response?.results == null) return [];
             var data = response.results.FirstOrDefault()?.bills;
             return data != null
@@ -114,9 +114,9 @@ namespace CapitolSharp.Congress.Stores
                 : [];
         }
 
-        public async Task<List<StatementModel>> GetMemberStatementsAsync(string memberId, string congress)
+        public async Task<List<StatementModel>> GetMemberStatementsAsync(string memberId)
         {
-            var response = await client.SendAsync<StatementResponse<List<Statement>>>($"congress/members/{memberId}/statements/{congress}");
+            var response = await client.SendAsync<StatementResponse<List<Statement>>>($"members/{memberId}/statements.json");
             if (response?.results == null) return [];
             var data = response.results;
             return data != null
@@ -126,7 +126,7 @@ namespace CapitolSharp.Congress.Stores
 
         public async Task<List<ExpensesModel>> GetMemberExpensesAsync(string id, int year, int quarter)
         {
-            var response = await client.SendAsync<Response<IEnumerable<Expenses>>>($"congress/members/office_expenses/{id}/{year}/{quarter}");
+            var response = await client.SendAsync<Response<IEnumerable<Expenses>>>($"members/{id}/office_expenses/{year}/{quarter}.json");
             if (response?.results == null) return [];
             var data = response.results;
             return data != null
@@ -136,7 +136,7 @@ namespace CapitolSharp.Congress.Stores
 
         public async Task<List<ExplanationModel>> GetMemberExplanationsAsync(string memberId, string congress)
         {
-            var response = await client.SendAsync<Response<List<Explanation>>>($"congress/members/{memberId}/explanations/{congress}");
+            var response = await client.SendAsync<Response<List<Explanation>>>($"members/{memberId}/explanations/{congress}.json");
             if (response?.results == null) return [];
             var data = response.results;
             return data != null

@@ -8,21 +8,20 @@ using System.Threading.Tasks;
 
 namespace CapitolSharp.Congress.Tests
 {
-    public class VotesTests(CapitolSharpCongressFixture fixture)
-        : IClassFixture<CapitolSharpCongressFixture>
+    public class VotesTests(CapitolSharpCongressFixture fixture) : CongressApiTest
     {
+        private readonly Votes sut = new(fixture.CongressApiMock.Object, fixture.Mapper);
+
         [Fact]
-        public async Task Votes_GetRecentVotesAsync()
+        public async Task GetRecentVotesAsync()
         {
-            var sut = new Votes(fixture.CongressApiMock.Object, fixture.Mapper);
             var result = await sut.GetRecentVotesAsync("house");
             Assert.True(result?.Count > 0);
         }
 
         [Fact]
-        public async Task Votes_GetRoleCallVoteAsync()
+        public async Task GetRoleCallVoteAsync()
         {
-            var sut = new Votes(fixture.CongressApiMock.Object, fixture.Mapper);
             var result = await sut.GetRoleCallVoteAsync("1", "house", "1", "1");
             Assert.False(string.IsNullOrEmpty(result?.roll_call));
         }
