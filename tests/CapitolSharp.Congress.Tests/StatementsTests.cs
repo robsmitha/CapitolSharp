@@ -25,5 +25,12 @@ namespace CapitolSharp.Congress.Tests
             var result = await sut.SearchStatementsAsync("term");
             Assert.True(result?.Count > 0);
         }
+
+        [Fact]
+        public async Task GetMemberStatementsAsync()
+        {
+            var actual = await sut.GetMemberStatementsAsync("1");
+            Assert.True(actual?.Count > 0);
+        }
     }
 }

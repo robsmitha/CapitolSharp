@@ -1,11 +1,10 @@
-﻿using CapitolSharp.Congress.Responses.Bills;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapitolSharp.Congress.Responses.Members
+namespace CapitolSharp.Congress.Responses.Bills
 {
     public class MemberBillsResult
     {

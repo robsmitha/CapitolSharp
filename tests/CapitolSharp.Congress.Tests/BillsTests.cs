@@ -25,5 +25,12 @@ namespace CapitolSharp.Congress.Tests
             var result = await sut.GetBillAsync("1", "hr7023");
             Assert.False(string.IsNullOrEmpty(result?.bill_slug));
         }
+
+        [Fact]
+        public async Task GetMemberBillsAsync()
+        {
+            var actual = await sut.GetMemberBillsAsync("1", "introduced");
+            Assert.True(actual?.Count > 0);
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace CapitolSharp.Congress.Stores
 {
     public interface ICongressApiClient
     {
-        Task<T?> SendAsync<T>(string function);
+        Task<T?> SendAsync<T>(string function, CancellationToken cancellationToken = default);
     }
 
     public class CongressApiClient : ICongressApiClient
@@ -23,15 +23,15 @@ namespace CapitolSharp.Congress.Stores
             _apiKey = apiKey;
         }
 
-        public async Task<T?> SendAsync<T>(string function)
+        public async Task<T?> SendAsync<T>(string function, CancellationToken cancellationToken = default)
         {
             try
             {
                 using var client = CreateCongressApiClient(_apiKey);
-                var response = await client.GetAsync(function);
+                var response = await client.GetAsync(function, cancellationToken);
                 if (response.IsSuccessStatusCode)
                 {
-                    var json = await response.Content.ReadAsStringAsync();
+                    var json = await response.Content.ReadAsStringAsync(cancellationToken);
                     return JsonSerializer.Deserialize<T>(json);
                 }
                 else

@@ -7,13 +7,19 @@ namespace CapitolSharp.Congress.Stores
 {
     public interface ILobbying
     {
-        Task<List<LobbyingRepresentationModel>> GetRecentLobbyingRepresentationsAsync();
+        /// <summary>
+        /// Get the most recent lobbying representation filings.
+        /// </summary>
+        /// <param name="offset"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<List<LobbyingRepresentationModel>> GetRecentLobbyingRepresentationsAsync(int offset = 0, CancellationToken cancellationToken = default);
     }
     public class Lobbying(ICongressApiClient client, IMapper mapper) : ILobbying
     {
-        public async Task<List<LobbyingRepresentationModel>> GetRecentLobbyingRepresentationsAsync()
+        public async Task<List<LobbyingRepresentationModel>> GetRecentLobbyingRepresentationsAsync(int offset = 0, CancellationToken cancellationToken = default)
         {
-            var response = await client.SendAsync<Response<IEnumerable<LobbyingListResult>>>($"/lobbying/latest.json");
+            var response = await client.SendAsync<Response<IEnumerable<LobbyingListResult>>>($"/lobbying/latest.json?offset={offset}", cancellationToken);
             if (response?.results == null) return [];
 
             var data = response.results.FirstOrDefault()?.lobbying_representations;

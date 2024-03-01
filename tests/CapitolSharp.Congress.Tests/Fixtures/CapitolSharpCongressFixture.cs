@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using CapitolSharp.Congress.Responses.Members;
-using CapitolSharp.Congress.Responses;
-using CapitolSharp.Congress.Stores;
 using Moq;
+using CapitolSharp.Congress.Stores;
+using CapitolSharp.Congress.Responses;
+using CapitolSharp.Congress.Responses.Members;
 using CapitolSharp.Congress.Responses.Bills;
 using CapitolSharp.Congress.Responses.Votes;
 using CapitolSharp.Congress.Responses.Statements;
@@ -25,37 +25,36 @@ namespace CapitolSharp.Congress.Tests.Fixtures
         public async Task InitializeAsync()
         {
             // Bills
-            await CongressApiMock.MockResponse<BillsResponse<List<UpcomingBills>>>(@"bills/upcoming/(?i:house|senate)\.json", "bills-GetUpcomingBills");
-            await CongressApiMock.MockResponse<BillsResponse<List<Bill>>>(@"^\w+/bills/\w+\.json$", "bills-GetBill");
+            await CongressApiMock.MockResponse<BillsResponse<List<UpcomingBills>>>(@"\/?bills\/upcoming\/[a-zA-Z0-9]+\.json?", "bills-GetUpcomingBills");
+            await CongressApiMock.MockResponse<BillsResponse<List<Bill>>>(@"\/?[a-zA-Z0-9]+\/bills\/[a-zA-Z0-9]+\.json?", "bills-GetBill");
+            await CongressApiMock.MockResponse<Response<IEnumerable<MemberBillsResult>>>(@"\/?members\/[a-zA-Z0-9]+\/bills\/[a-zA-Z0-9]+\.json?\?offset=[a-zA-Z0-9]+", "members-GetMemberBills");
 
             // Committee
-            await CongressApiMock.MockResponse<Response<IEnumerable<CommitteeResult>>>(@"^\w+/\w+/committees/\w+\.json$", "committees-GetCommittee");
-            await CongressApiMock.MockResponse<Response<IEnumerable<CommitteeListResult>>>(@"^\w+/\w+/committees\.json$", "committees-GetCommittees");
+            await CongressApiMock.MockResponse<Response<IEnumerable<CommitteeResult>>>(@"\/?[a-zA-Z0-9]+\/[a-zA-Z0-9]+\/committees\/[a-zA-Z0-9]+\.json", "committees-GetCommittee");
+            await CongressApiMock.MockResponse<Response<IEnumerable<CommitteeListResult>>>(@"\/?[a-zA-Z0-9]+\/[a-zA-Z0-9]+\/committees\.json", "committees-GetCommittees");
 
             // Lobbying
-            await CongressApiMock.MockResponse<Response<IEnumerable<LobbyingListResult>>>(@"^\/lobbying\/latest\.json$", "lobbying-GetRecentLobbyingRepresentations");
+            await CongressApiMock.MockResponse<Response<IEnumerable<LobbyingListResult>>>(@"\/?lobbying\/latest\.json\?offset=[a-zA-Z0-9]+", "lobbying-GetRecentLobbyingRepresentations");
 
             // Members
-            await CongressApiMock.MockResponse<Response<List<MemberListResult>>>(@"\w+/(?i:house|senate)/members\.json", "members-GetMembers");
-            await CongressApiMock.MockResponse<Response<List<Member>>>(@"members/\w+\.json$", "members-GetMember");
-            await CongressApiMock.MockResponse<Response<List<CompareVotePositionsResult>>>(@"^members\/\w+\/votes\/\w+\/\w+\/\w+\.json$", "members-CompareVotePositions");
-            await CongressApiMock.MockResponse<Response<List<MemberListItem>>>(@"^members\/\w+\/\w+\/current\.json$", "members-GetCurrentSenateMembers");
-            await CongressApiMock.MockResponse<Response<List<MemberListResult>>>(@"^\w+\/\w+\/members\/leaving\.json$", "members-GetMembersLeaving");
-            await CongressApiMock.MockResponse<Response<List<MemberListResult>>>(@"^members\/new\.json$", "members-GetNewMembers");
-            await CongressApiMock.MockResponse<Response<IEnumerable<MemberVotesResult>>>(@"^members\/\w+\/votes\.json$", "members-GetMemberVotes");
-            await CongressApiMock.MockResponse<Response<IEnumerable<MemberBillsResult>>>(@"^members\/\w+\/bills\/introduced\.json$", "members-GetMemberBills");
-            await CongressApiMock.MockResponse<Response<IEnumerable<MemberBillsResult>>>(@"^members\/\w+\/bills\/cosponsored\.json$", "members-GetMemberCosponsoredBills");
-            await CongressApiMock.MockResponse<StatementResponse<List<Statement>>>(@"^members\/\w+\/statements\.json$", "members-GetMemberStatements");
-            await CongressApiMock.MockResponse<Response<IEnumerable<Expenses>>>(@"members\/\w+\/office_expenses\/\w+\/\w+\.json", "members-GetMemberExpenses");
-            await CongressApiMock.MockResponse<Response<List<Explanation>>>(@"members\/\w+\/explanations\/\w+\.json", "members-GetMemberExplanations");
+            await CongressApiMock.MockResponse<Response<List<MemberListResult>>>(@"\/?[a-zA-Z0-9]+\/[a-zA-Z0-9]+\/members\.json\?offset=[a-zA-Z0-9]+", "members-GetMembers");
+            await CongressApiMock.MockResponse<Response<List<Member>>>(@"\/?members\/[a-zA-Z0-9]+\.json", "members-GetMember");
+            await CongressApiMock.MockResponse<Response<List<CompareVotePositionsResult>>>(@"\/?members\/[a-zA-Z0-9]+\/votes\/[a-zA-Z0-9]+\/[a-zA-Z0-9]+\/[a-zA-Z0-9]+\.json\?offset=[a-zA-Z0-9]+", "members-CompareVotePositions");
+            await CongressApiMock.MockResponse<Response<List<MemberListItem>>>(@"\/?members\/senate\/[a-zA-Z0-9]+\/current\.json", "members-GetCurrentSenateMembers");
+            await CongressApiMock.MockResponse<Response<List<MemberListResult>>>(@"\/?[a-zA-Z0-9]+\/[a-zA-Z0-9]+\/members\/leaving\.json\?offset=[a-zA-Z0-9]+", "members-GetMembersLeaving");
+            await CongressApiMock.MockResponse<Response<List<MemberListResult>>>(@"\/?members\/new\.json\?offset=[a-zA-Z0-9]+", "members-GetNewMembers");
+            await CongressApiMock.MockResponse<Response<IEnumerable<MemberVotesResult>>>(@"\/?members\/[a-zA-Z0-9]+\/votes\.json\?offset=[a-zA-Z0-9]+", "members-GetMemberVotes");
+            await CongressApiMock.MockResponse<Response<IEnumerable<Expenses>>>(@"\/?members\/[a-zA-Z0-9]+\/office_expenses\/[a-zA-Z0-9]+\/[a-zA-Z0-9]+\.json\?offset=[a-zA-Z0-9]+", "members-GetMemberExpenses");
 
             // Statements
-            await CongressApiMock.MockResponse<StatementResponse<IEnumerable<Statement>>>(@"^\/statements\/latest\.json$", "statements-GetRecentStatements");
-            await CongressApiMock.MockResponse<StatementResponse<IEnumerable<Statement>>>(@"^/statements/search\.json\?query=.+$", "statements-SearchStatements");
+            await CongressApiMock.MockResponse<StatementResponse<IEnumerable<Statement>>>(@"\/?statements\/latest\.json\?offset=[a-zA-Z0-9]+", "statements-GetRecentStatements");
+            await CongressApiMock.MockResponse<StatementResponse<IEnumerable<Statement>>>(@"\/?statements\/search\.json\?query=[a-zA-Z0-9]+&offset=[a-zA-Z0-9]+", "statements-SearchStatements");
+            await CongressApiMock.MockResponse<StatementResponse<List<Statement>>>(@"\/?members\/[a-zA-Z0-9]+\/statements\.json\?offset=[a-zA-Z0-9]+", "members-GetMemberStatements");
 
             // Votes
-            await CongressApiMock.MockResponse<Response<RecentVotesResult>>(@"^\w+/votes/recent.json$", "votes-GetRecentVotes");
-            await CongressApiMock.MockResponse<Response<RollCallVoteResult>>(@"^\w+/\w+/sessions/\w+/votes/\w+\.json$", "votes-GetRoleCallVote");
+            await CongressApiMock.MockResponse<Response<RecentVotesResult>>(@"\/?[a-zA-Z0-9]+\/votes\/recent\.json\?offset=[a-zA-Z0-9]+", "votes-GetRecentVotes");
+            await CongressApiMock.MockResponse<Response<RollCallVoteResult>>(@"\/?[a-zA-Z0-9]+\/[a-zA-Z0-9]+\/sessions\/[a-zA-Z0-9]+\/votes\/[a-zA-Z0-9]+\.json", "votes-GetRoleCallVote");
+            await CongressApiMock.MockResponse<Response<List<Explanation>>>(@"\/?members\/[a-zA-Z0-9]+\/explanations\/[a-zA-Z0-9]+\.json\?offset=[a-zA-Z0-9]+", "members-GetMemberExplanations");
         }
 
         public Task DisposeAsync() => Task.CompletedTask;

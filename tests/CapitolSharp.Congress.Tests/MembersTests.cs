@@ -31,7 +31,7 @@ namespace CapitolSharp.Congress.Tests
         [Fact]
         public async Task GetCurrentSenateMembersAsync()
         {
-            var actual = await sut.GetCurrentSenateMembersAsync("house", "FL");
+            var actual = await sut.GetCurrentSenateMembersAsync("FL");
             Assert.True(actual?.Count > 0);
         }
 
@@ -57,37 +57,9 @@ namespace CapitolSharp.Congress.Tests
         }
 
         [Fact]
-        public async Task GetMemberBillsAsync()
-        {
-            var actual = await sut.GetMemberBillsAsync("1");
-            Assert.True(actual?.Count > 0);
-        }
-
-        [Fact]
-        public async Task GetMemberCosponsoredBillsAsync()
-        {
-            var actual = await sut.GetMemberCosponsoredBillsAsync("1");
-            Assert.True(actual?.Count > 0);
-        }
-
-        [Fact]
-        public async Task GetMemberStatementsAsync()
-        {
-            var actual = await sut.GetMemberStatementsAsync("1");
-            Assert.True(actual?.Count > 0);
-        }
-
-        [Fact]
         public async Task GetMemberExpensesAsync()
         {
             var actual = await sut.GetMemberExpensesAsync("1", 2020, 1);
-            Assert.True(actual?.Count > 0);
-        }
-
-        [Fact]
-        public async Task GetMemberExplanationsAsync()
-        {
-            var actual = await sut.GetMemberExplanationsAsync("1", "1");
             Assert.True(actual?.Count > 0);
         }
     }
