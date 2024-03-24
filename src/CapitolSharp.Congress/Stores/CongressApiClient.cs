@@ -1,11 +1,4 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 
 namespace CapitolSharp.Congress.Stores
 {
@@ -27,8 +20,16 @@ namespace CapitolSharp.Congress.Stores
         {
             try
             {
-                using var client = CreateCongressApiClient(_apiKey);
-                var response = await client.GetAsync(function, cancellationToken);
+                var httpRequestMessage = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri($"https://api.propublica.org/congress/v1{(function.StartsWith('/') ? function : '/' + function)}")
+                };
+                httpRequestMessage.Headers.Add("X-API-Key", _apiKey);
+
+                using var client = new HttpClient();
+                var response = await client.SendAsync(httpRequestMessage, cancellationToken);
+                
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync(cancellationToken);
@@ -44,16 +45,6 @@ namespace CapitolSharp.Congress.Stores
                 // TODO: Edge cases (ProPublic Rate Limit, Transient Errors, etc.)
                 throw;
             }
-        }
-
-        private static HttpClient CreateCongressApiClient(string apiKey)
-        {
-            var client = new HttpClient
-            {
-                BaseAddress = new Uri("https://api.propublica.org/congress/v1")
-            };
-            client.DefaultRequestHeaders.Add("X-API-Key", apiKey);
-            return client;
         }
     }
 }
