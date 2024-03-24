@@ -10,11 +10,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{9D7ECAAE-E1F7-47C0-8CEC-7F446D1D266E}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\ci.yml = .github\workflows\ci.yml
+		.github\workflows\release.yml = .github\workflows\release.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4172E0CA-6630-44B8-BEE6-FAC1F0B7E699}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapitolSharp.Congress.Tests", "tests\CapitolSharp.Congress.Tests\CapitolSharp.Congress.Tests.csproj", "{6C9E8BFA-C4C7-4015-A6E2-F2F9164D20A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapitolSharp.Congress.Tests", "tests\CapitolSharp.Congress.Tests\CapitolSharp.Congress.Tests.csproj", "{6C9E8BFA-C4C7-4015-A6E2-F2F9164D20A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
