@@ -1,4 +1,4 @@
-﻿namespace CapitolSharp.Congress.Common
+﻿namespace CapitolSharp.Congress.Options
 {
     public enum SortDirectionOption
     {

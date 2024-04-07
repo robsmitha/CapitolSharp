@@ -1,7 +1,7 @@
 ﻿using CapitolSharp.Congress.Bills.GetASpecificBill;
 using CapitolSharp.Congress.Common;
 
-namespace CapitolSharp.Congress
+namespace CapitolSharp.Congress.Bills
 {
     /// <summary>
     /// Get details about a particular bill, including actions taken and votes.

@@ -1,0 +1,19 @@
+{
+  "status": "OK",
+  "copyright": "Copyright (c) 2024 Pro Publica Inc. All Rights Reserved.",
+  "results": [
+    {
+      "query": "economy",
+      "num_results": 1,
+      "offset": 0,
+      "subjects": [
+        {
+          "name": "Underground economy",
+          "url_name": "underground-economy",
+          "has_bills": "true",
+          "has_statements": "false"
+        }
+      ]
+    }
+  ]
+}

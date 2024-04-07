@@ -5,14 +5,14 @@ using System.Net;
 
 namespace CapitolSharp.Congress.Tests.Fixtures
 {
-    public class CongressFixture : IAsyncLifetime
+    public class CapitolSharpFixture : IAsyncLifetime
     {
         public ICapitolSharpCongress? CapitolSharpCongress;
 
         public readonly Mock<HttpMessageHandler> MockHttpHandler = new(MockBehavior.Strict);
         private readonly string BinDirectory = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
 
-        public CongressFixture()
+        public CapitolSharpFixture()
         {
             CapitolSharpCongress = new CapitolSharpCongress(new HttpClient(MockHttpHandler.Object), new ProPublicaApiSettings());
         }
@@ -46,7 +46,7 @@ namespace CapitolSharp.Congress.Tests.Fixtures
 
 
     [CollectionDefinition("Congress collection")]
-    public class CongressCollection : ICollectionFixture<CongressFixture>
+    public class CongressCollection : ICollectionFixture<CapitolSharpFixture>
     {
         // This class has no code, and is never created. Its purpose is simply
         // to be the place to apply [CollectionDefinition] and all the

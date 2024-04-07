@@ -1,7 +1,8 @@
 ﻿using CapitolSharp.Congress.Bills.SearchBills;
 using CapitolSharp.Congress.Common;
+using CapitolSharp.Congress.Options;
 
-namespace CapitolSharp.Congress
+namespace CapitolSharp.Congress.Bills
 {
     /// <summary>
     /// Use this request to search the title and full text of legislation by keyword to get the 20 most recent bills. 
@@ -32,14 +33,5 @@ namespace CapitolSharp.Congress
         /// </summary>
         internal override ProPublicaApiEndpoint Endpoint => new("/bills/search.json?query={0}&offset={1}&sort={2}&dir={3}", 
             Query, Offset, Sort.Serialize(), SortDirection.Serialize());
-    }
-
-    public enum SearchBillsSortOption
-    {
-        [SerializedOption("date")]
-        Date,
-
-        [SerializedOption("_score")]
-        Score
     }
 }

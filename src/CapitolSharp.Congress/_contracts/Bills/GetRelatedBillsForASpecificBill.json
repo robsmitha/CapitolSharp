@@ -1,0 +1,76 @@
+{
+  "status": "OK",
+  "copyright": "Copyright (c) 2024 Pro Publica Inc. All Rights Reserved.",
+  "num_results": 2,
+  "offset": 0,
+  "results": [
+    {
+      "congress": "115",
+      "bill_id": "hr4881-115",
+      "bill_slug": "hr4881",
+      "bill_type": "hr",
+      "number": "H.R.4881",
+      "bill_uri": "https://api.propublica.org/congress/v1/115/bills/hr4881.json",
+      "url_number": "hr4881",
+      "title": "To require the Federal Communications Commission to establish a task force for meeting the connectivity and technology needs of precision agriculture in the United States.",
+      "sponsor_title": "Rep.",
+      "sponsor_id": "L000566",
+      "sponsor_name": "Robert E. Latta",
+      "sponsor_state": "OH",
+      "sponsor_party": "R",
+      "sponsor_uri": "https://api.propublica.org/congress/v1/members/L000566.json",
+      "introduced_date": "2018-01-25",
+      "number_of_cosponsors": 10,
+      "committees": "Senate Commerce, Science, and Transportation Committee",
+      "latest_major_action_date": "2018-07-24",
+      "latest_major_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+      "house_passage_vote": "2018-07-23",
+      "senate_passage_vote": "2018-01-25",
+      "related_bills": [
+        {
+          "number": "S.2343",
+          "bill_id": "s2343-115",
+          "bill_slug": "s2343",
+          "bill_type": "s",
+          "title": "A bill to require the Federal Communications Commission to establish a task force for meeting the connectivity and technology needs of precision agriculture in the United States.",
+          "short_title": "Precision Agriculture Connectivity Act of 2018",
+          "relationship": "Identical bill identified by CRS",
+          "sponsor_title": "Sen.",
+          "sponsor": "Roger Wicker",
+          "sponsor_id": "W000437",
+          "sponsor_uri": "https://api.propublica.org/congress/v1/members/W000437.json",
+          "sponsor_party": "R",
+          "sponsor_state": "MS",
+          "introduced_date": "2018-01-25",
+          "gpo_pdf_uri": null,
+          "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/senate-bill/2343",
+          "govtrack_url": "https://www.govtrack.us/congress/bills/115/s2343",
+          "active": true,
+          "last_vote": "2018-01-25",
+          "house_passage": "2018-01-25",
+          "senate_passage": "2018-12-06",
+          "enacted": "2018-01-25",
+          "vetoed": "2018-01-25",
+          "cosponsors": 13,
+          "cosponsors_by_party": {
+            "D": 6,
+            "R": 6,
+            "ID": 1
+          },
+          "committees": "Senate Commerce, Science, and Transportation Committee",
+          "committee_codes": [
+            "SSCM"
+          ],
+          "subcommittee_codes": [
+            "SSCM"
+          ],
+          "primary_subject": "Science, Technology, Communications",
+          "summary": "Precision Agriculture Connectivity Act of 2018  (Sec. 3) This bill requires the Federal Communications Commission (FCC) to establish the Task Force for Reviewing the Connectivity and Technology Needs of Precision Agriculture in the United States. The task force must identify current gaps in the availability of broadband Internet access service on agricultural land and recommend policies to expand its deployment. The Department of Agriculture and the FCC shall jointly submit to the task force a list of all federal programs or resources available for the expansion of broadband Internet access service on unserved agricultural land. The FCC shall renew the task force every two years until it terminates on January 1, 2025.",
+          "summary_short": "Precision Agriculture Connectivity Act of 2018  (Sec. 3) This bill requires the Federal Communications Commission (FCC) to establish the Task Force for Reviewing the Connectivity and Technology Needs of Precision Agriculture in the United States. The task force must identify current gaps in the availability of broadband Internet access service on agricultural land and recommend policies to expand its deployment. The Department of Agriculture and the FCC shall jointly submit to the task force ...",
+          "latest_major_action_date": "2018-12-10",
+          "latest_major_action": "Held at the desk."
+        }
+      ]
+    }
+  ]
+}

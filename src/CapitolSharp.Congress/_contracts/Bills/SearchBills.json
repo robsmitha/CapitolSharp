@@ -34,13 +34,15 @@
           "cosponsors_by_party": {
             "R": 18,
             "D": 12,
-            "I": 1
+            "ID": 1
           },
           "committees": "",
           "committee_codes": [
             "HSGO"
           ],
-          "subcommittee_codes": [],
+          "subcommittee_codes": [
+            "HSHM07"
+          ],
           "primary_subject": "",
           "summary": "",
           "summary_short": "",

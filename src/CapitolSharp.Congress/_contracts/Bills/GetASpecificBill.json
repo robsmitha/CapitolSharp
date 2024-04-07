@@ -29,14 +29,20 @@
       "enacted": "2020-12-20",
       "vetoed": "2020-12-20",
       "cosponsors": 0,
-      "cosponsors_by_party": {},
+      "cosponsors_by_party": {
+        "D": 1,
+        "R": 1,
+        "ID": 1
+      },
       "withdrawn_cosponsors": 0,
       "primary_subject": "Economics and Public Finance",
       "committees": "House Appropriations Committee",
       "committee_codes": [
         "HSAP"
       ],
-      "subcommittee_codes": [],
+      "subcommittee_codes": [
+        "HSHM07"
+      ],
       "latest_major_action_date": "2020-12-20",
       "latest_major_action": "Became Public Law No: 116-226.",
       "house_passage_vote": "2020-12-20",
@@ -50,12 +56,6 @@
           "title": "RDS",
           "url": "https://www.govinfo.gov/content/pkg/BILLS-116hjres110rds/xml/BILLS-116hjres110rds.xml",
           "congressdotgov_url": "https://www.congress.gov/bill/116th-congress/house-joint-resolution/110/text/rds"
-        },
-        {
-          "status": "Engrossed in House",
-          "title": "EH",
-          "url": "https://www.govinfo.gov/content/pkg/BILLS-116hjres110eh/xml/BILLS-116hjres110eh.xml",
-          "congressdotgov_url": "https://www.congress.gov/bill/116th-congress/house-joint-resolution/110/text/eh"
         }
       ],
       "actions": [
@@ -65,83 +65,6 @@
           "action_type": "Floor",
           "datetime": "2020-12-20",
           "description": "Received in the Senate, read twice, considered, read the third time, and passed without amendment by Voice Vote. (consideration: CR S7885)"
-        },
-        {
-          "id": 11,
-          "chamber": "House",
-          "action_type": "Floor",
-          "datetime": "2020-12-20",
-          "description": "On motion to suspend the rules and pass the resolution Agreed to by the Yeas and Nays: (2/3 required): 329 - 65 (Roll no. 248). (text: CR H7281)"
-        },
-        {
-          "id": 10,
-          "chamber": "House",
-          "action_type": "Floor",
-          "datetime": "2020-12-20",
-          "description": "Considered under suspension of the rules. (consideration: CR H7281-7283)"
-        },
-        {
-          "id": 9,
-          "chamber": "House",
-          "action_type": "Floor",
-          "datetime": "2020-12-20",
-          "description": "Presented to President."
-        },
-        {
-          "id": 8,
-          "chamber": "Senate",
-          "action_type": "Floor",
-          "datetime": "2020-12-20",
-          "description": "Message on Senate action sent to the House."
-        },
-        {
-          "id": 7,
-          "chamber": "Senate",
-          "action_type": "Floor",
-          "datetime": "2020-12-20",
-          "description": "Received in the Senate, read twice, considered, read the third time, and passed without amendment by Voice Vote."
-        },
-        {
-          "id": 6,
-          "chamber": "House",
-          "action_type": "Floor",
-          "datetime": "2020-12-20",
-          "description": "Motion to reconsider laid on the table Agreed to without objection."
-        },
-        {
-          "id": 5,
-          "chamber": "House",
-          "action_type": "Floor",
-          "datetime": "2020-12-20",
-          "description": "On motion to suspend the rules and pass the resolution Agreed to by the Yeas and Nays: (2/3 required): 329 - 65 (Roll no. 248)."
-        },
-        {
-          "id": 4,
-          "chamber": "House",
-          "action_type": "Floor",
-          "datetime": "2020-12-20",
-          "description": "DEBATE - The House proceeded with forty minutes of debate on H.J. Res. 110."
-        },
-        {
-          "id": 3,
-          "chamber": "House",
-          "action_type": "Floor",
-          "datetime": "2020-12-20",
-          "description": "Considered under suspension of the rules."
-        },
-        {
-          "id": 2,
-          "chamber": "House",
-          "action_type": "Floor",
-          "datetime": "2020-12-20",
-          "description": "Mrs. Lowey moved to suspend the rules and pass the resolution."
-        },
-        {
-          "id": 1,
-          "chamber": "House",
-          "action_type": "IntroReferral",
-          "datetime": "2020-12-20",
-          "description": "Referred to the House Committee on Appropriations."
         }
       ],
       "presidential_statements": [],

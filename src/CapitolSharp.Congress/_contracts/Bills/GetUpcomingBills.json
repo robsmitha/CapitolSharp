@@ -1,0 +1,29 @@
+{
+  "status": "OK",
+  "copyright": "Copyright (c) 2024 Pro Publica Inc. All Rights Reserved.",
+  "results": [
+    {
+      "date": "2024-04-07",
+      "bills": [
+        {
+          "congress": "118",
+          "chamber": "house",
+          "bill_id": "hr524-118",
+          "bill_slug": "hr524",
+          "bill_type": "hr",
+          "bill_number": "H.R.524",
+          "api_uri": "https://api.propublica.org/congress/v1/118/bills/hr524.json",
+          "legislative_day": "2024-04-08",
+          "scheduled_at": "2024-04-05T16:45:24-04:00",
+          "range": "week",
+          "context": "",
+          "description": "To amend the Coastal Barrier Resources Act to create an exemption for certain shoreline borrow sites, as amended",
+          "bill_url": "http://docs.house.gov/billsthisweek/20240408/HR524 Rouzer.pdf",
+          "consideration": "suspension",
+          "source_type": "house_docs",
+          "url": "https://docs.house.gov/floor/Default.aspx?date=2024-04-08"
+        }
+      ]
+    }
+  ]
+}

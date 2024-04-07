@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapitolSharp.Congress.Common
+namespace CapitolSharp.Congress.Options
 {
 
     [AttributeUsage(AttributeTargets.Field)]
@@ -13,7 +13,7 @@ namespace CapitolSharp.Congress.Common
         public string SerializedValue { get; } = serializedValue;
     }
 
-    public static class SerializedEnumAttributeExtensions
+    public static class SerializedOptionAttributeExtensions
     {
         public static string Serialize<T>(this T direction) where T : struct
         {
