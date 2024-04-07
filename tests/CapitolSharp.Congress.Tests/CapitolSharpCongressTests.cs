@@ -7,10 +7,7 @@ namespace CapitolSharp.Congress.Tests
     [Collection("Congress collection")]
     public class CapitolSharpCongressTests(CongressFixture fixture) : IAsyncLifetime
     {
-        public Task InitializeAsync()
-        {
-            return Task.CompletedTask;
-        }
+        public Task InitializeAsync() => Task.CompletedTask;
 
         [Fact]
         public async Task SearchBillsRequest()
@@ -20,7 +17,7 @@ namespace CapitolSharp.Congress.Tests
                 Query = "veterans"
             };
 
-            await fixture.MockHttpResponseMessage(request, "Bills/SearchBills");
+            await fixture.MockHttpResponseMessage(request, "Bills/Contracts/SearchBills.json");
 
             var response = await fixture.CapitolSharpCongress!.SendAsync(request);
 
@@ -36,7 +33,7 @@ namespace CapitolSharp.Congress.Tests
                 BillId = "hr4881"
             };
 
-            await fixture.MockHttpResponseMessage(request, "Bills/GetASpecificBill");
+            await fixture.MockHttpResponseMessage(request, "Bills/Contracts/GetASpecificBill.json");
 
             var response = await fixture.CapitolSharpCongress!.SendAsync(request);
 
@@ -52,7 +49,7 @@ namespace CapitolSharp.Congress.Tests
                 Type = GetRecentBillsByASpecificMemberTypeOption.Active
             };
 
-            await fixture.MockHttpResponseMessage(request, "Bills/GetRecentBillsByASpecificMember");
+            await fixture.MockHttpResponseMessage(request, "Bills/Contracts/GetRecentBillsByASpecificMember.json");
 
             var response = await fixture.CapitolSharpCongress!.SendAsync(request);
 

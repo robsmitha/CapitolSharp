@@ -2,7 +2,6 @@
 using Moq;
 using Moq.Protected;
 using System.Net;
-using System.Text.RegularExpressions;
 
 namespace CapitolSharp.Congress.Tests.Fixtures
 {
@@ -11,6 +10,7 @@ namespace CapitolSharp.Congress.Tests.Fixtures
         public ICapitolSharpCongress? CapitolSharpCongress;
 
         public readonly Mock<HttpMessageHandler> MockHttpHandler = new(MockBehavior.Strict);
+        private readonly string ContractsDirectory = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
 
         public CongressFixture()
         {
@@ -19,11 +19,10 @@ namespace CapitolSharp.Congress.Tests.Fixtures
 
         public Task InitializeAsync() => Task.CompletedTask;
 
-        public async Task MockHttpResponseMessage<T>(ProPublicaApiRequest<T> request, string resource)
+        public async Task MockHttpResponseMessage<T>(ProPublicaApiRequest<T> request, string resourcePath)
         {
-            // TODO: Load expected response from Contracts Folder now?
-            using var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync($"https://smitha-cdn.s3.us-east-2.amazonaws.com/CapitolSharp/Congress/{resource}.json");
+            var resourceLocation = Path.Combine(ContractsDirectory, resourcePath.Replace("/", "\\"));
+            var json = await File.ReadAllTextAsync(resourceLocation);
 
             MockHttpHandler.Protected()
                 .Setup<Task<HttpResponseMessage>>(

@@ -1,11 +1,9 @@
 ﻿using CapitolSharp.Congress.CodeGeneration.Customization;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
-using Newtonsoft.Json.Serialization;
 using NJsonSchema;
 using NJsonSchema.CodeGeneration.CSharp;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -28,10 +26,7 @@ namespace CapitolSharp.CodeGeneration
                 try
                 {
                     var schema = JsonSchema.FromSampleJson(args.content);
-                    var contractResolver = new DefaultContractResolver
-                    {
-                        NamingStrategy = new CamelCaseNamingStrategy()
-                    };
+
                     var generator = new CSharpGenerator(schema, new CSharpGeneratorSettings
                     {
                         Namespace = $"CapitolSharp.Congress.{args.@namespace}.{args.name}",
@@ -40,19 +35,23 @@ namespace CapitolSharp.CodeGeneration
                         PropertyNameGenerator = new PascalCasePropertyNameGenerator()
                     });
 
-                    var dto = generator.GenerateFile($"{args.name}Response");
-                    spc.AddSource($"{args.name}Contract.g.cs", SourceText.From(dto, Encoding.UTF8));
+                    var fileText = generator.GenerateFile($"{args.name}Response");
+                    spc.AddSource($"{args.name}Contract.g.cs", SourceText.From(fileText, Encoding.UTF8));
                 }
                 catch (Exception e)
                 {
                     var sb = new StringBuilder();
-                    sb.AppendLine("/*");
                     sb.AppendLine(e.Message);
                     sb.AppendLine(e.StackTrace);
-                    sb.AppendLine(e.InnerException?.Message);
-                    sb.AppendLine(e.InnerException?.StackTrace);
-                    sb.AppendLine("*/");
-                    spc.AddSource($"{args.name}.g.cs", SourceText.From(sb.ToString(), Encoding.UTF8));
+                    spc.ReportDiagnostic(Diagnostic.Create(
+                                new DiagnosticDescriptor(
+                                    "CAPITOL0001",
+                                    $"Unexpected error generating {args.name} contract",
+                                    sb.ToString(),
+                                    nameof(ProPublicaCongressContractGenerator),
+                                    DiagnosticSeverity.Error,
+                                    isEnabledByDefault: true),
+                                Location.None));
                 }
             });
         }
