@@ -10,7 +10,7 @@ namespace CapitolSharp.Congress.Bills
     /// For previous Congresses, “recent bills” means the last 20 bills of that Congress. 
     /// In the responses, an active value of true means that the bill has seen action beyond introduction and committee referral.
     /// </summary>
-    public class GetRecentBillsRequest : ProPublicaApiRequest<GetRecentBillsResponse>
+    public class GetRecentBillsRequest : ProPublicaApiRequestPaged<GetRecentBillsResponse>
     {
         /// <summary>
         /// The congress
@@ -32,6 +32,6 @@ namespace CapitolSharp.Congress.Bills
         /// <summary>
         /// GET https://api.propublica.org/congress/v1/{congress}/{chamber}/bills/{type}.json
         /// </summary>
-        internal override ProPublicaApiEndpoint Endpoint => new("{0}/{1}/bills/{2}.json", Congress, Chamber, Type.Serialize());
+        internal override ProPublicaApiEndpoint Endpoint => new("{0}/{1}/bills/{2}.json?offset={3}", Congress, Chamber, Type.Serialize(), Offset);
     }
 }

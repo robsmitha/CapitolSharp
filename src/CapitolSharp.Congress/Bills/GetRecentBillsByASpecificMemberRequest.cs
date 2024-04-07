@@ -8,7 +8,7 @@ namespace CapitolSharp.Congress.Bills
     /// Get the 20 bills most recently introduced or updated by a particular member.
     /// <para>Results can include more than one Congress.</para>
     /// </summary>
-    public class GetRecentBillsByASpecificMemberRequest : ProPublicaApiRequest<GetRecentBillsByASpecificMemberResponse>
+    public class GetRecentBillsByASpecificMemberRequest : ProPublicaApiRequestPaged<GetRecentBillsByASpecificMemberResponse>
     {
         /// <summary>
         /// The ID of the member to retrieve
@@ -23,6 +23,6 @@ namespace CapitolSharp.Congress.Bills
         /// <summary>
         /// GET https://api.propublica.org/congress/v1/members/{member-id}/bills/{type}.json
         /// </summary>
-        internal override ProPublicaApiEndpoint Endpoint => new("/members/{0}/bills/{1}.json", MemberId, Type.Serialize());
+        internal override ProPublicaApiEndpoint Endpoint => new("/members/{0}/bills/{1}.json?offset={2}", MemberId, Type.Serialize(), Offset);
     }
 }

@@ -6,7 +6,7 @@ namespace CapitolSharp.Congress.Bills
     /// <summary>
     /// Use this request type to get Library of Congress-identified related bills for a particular bill.
     /// </summary>
-    public class GetRelatedBillsForASpecificBillRequest : ProPublicaApiRequest<GetRelatedBillsForASpecificBillResponse>
+    public class GetRelatedBillsForASpecificBillRequest : ProPublicaApiRequestPaged<GetRelatedBillsForASpecificBillResponse>
     {
         /// <summary>
         /// The congress
@@ -20,6 +20,6 @@ namespace CapitolSharp.Congress.Bills
         /// </summary>
         public string BillId { get; set; } = "";
 
-        internal override ProPublicaApiEndpoint Endpoint => new("{0}/bills/{1}/related.json", Congress, BillId);
+        internal override ProPublicaApiEndpoint Endpoint => new("{0}/bills/{1}/related.json?offset={2}", Congress, BillId, Offset);
     }
 }

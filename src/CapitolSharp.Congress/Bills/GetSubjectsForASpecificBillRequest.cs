@@ -6,7 +6,7 @@ namespace CapitolSharp.Congress.Bills
     /// <summary>
     /// Use this request type to get Library of Congress-assigned subjects about a particular bill.
     /// </summary>
-    public class GetSubjectsForASpecificBillRequest : ProPublicaApiRequest<GetSubjectsForASpecificBillResponse>
+    public class GetSubjectsForASpecificBillRequest : ProPublicaApiRequestPaged<GetSubjectsForASpecificBillResponse>
     {
         /// <summary>
         /// The congress
@@ -20,6 +20,6 @@ namespace CapitolSharp.Congress.Bills
         /// </summary>
         public string BillId { get; set; } = "";
 
-        internal override ProPublicaApiEndpoint Endpoint => new("{0}/bills/{1}/subjects.json", Congress, BillId);
+        internal override ProPublicaApiEndpoint Endpoint => new("{0}/bills/{1}/subjects.json?offset={2}", Congress, BillId, Offset);
     }
 }

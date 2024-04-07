@@ -3,7 +3,7 @@ using CapitolSharp.Congress.Bills.GetCosponsorsForASpecificBill;
 
 namespace CapitolSharp.Congress.Bills
 {
-    public class GetCosponsorsForASpecificBillRequest : ProPublicaApiRequest<GetCosponsorsForASpecificBillResponse>
+    public class GetCosponsorsForASpecificBillRequest : ProPublicaApiRequestPaged<GetCosponsorsForASpecificBillResponse>
     {
         /// <summary>
         /// The congress
@@ -17,6 +17,6 @@ namespace CapitolSharp.Congress.Bills
         /// </summary>
         public string BillId { get; set; } = "";
 
-        internal override ProPublicaApiEndpoint Endpoint => new("{0}/bills/{1}/cosponsors.json", Congress, BillId);
+        internal override ProPublicaApiEndpoint Endpoint => new("{0}/bills/{1}/cosponsors.json?offset={2}", Congress, BillId, Offset);
     }
 }

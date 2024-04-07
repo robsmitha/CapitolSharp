@@ -8,7 +8,7 @@ namespace CapitolSharp.Congress.Bills
     /// Use this request to search the title and full text of legislation by keyword to get the 20 most recent bills. 
     /// Searches cover House and Senate bills from the 113th Congress through the current Congress (117th).
     /// </summary>
-    public class SearchBillsRequest : ProPublicaApiRequest<SearchBillsResponse>
+    public class SearchBillsRequest : ProPublicaApiRequestPaged<SearchBillsResponse>
     {
         /// <summary>
         /// The query to search the title and full text of legislation by keyword to get the 20 most recent bills.
@@ -29,9 +29,9 @@ namespace CapitolSharp.Congress.Bills
         public SortDirectionOption SortDirection { get; set; } = SortDirectionOption.Descending;
 
         /// <summary>
-        /// GET https://api.propublica.org/congress/v1/bills/search.json?query={query}&offset={&offset}&sort={sort}&dir={dir}
+        /// GET https://api.propublica.org/congress/v1/bills/search.json?query={query}&sort={sort}&dir={dir}&offset={&offset}
         /// </summary>
-        internal override ProPublicaApiEndpoint Endpoint => new("/bills/search.json?query={0}&offset={1}&sort={2}&dir={3}", 
+        internal override ProPublicaApiEndpoint Endpoint => new("/bills/search.json?query={0}&sort={1}&dir={2}&offset={3}", 
             Query, Offset, Sort.Serialize(), SortDirection.Serialize());
     }
 }

@@ -6,7 +6,7 @@ namespace CapitolSharp.Congress.Bills
     /// <summary>
     /// Use this request type to search for bill subjects that contain a specified term.
     /// </summary>
-    public class GetASpecificBillSubjectRequest : ProPublicaApiRequest<GetASpecificBillSubjectResponse>
+    public class GetASpecificBillSubjectRequest : ProPublicaApiRequestPaged<GetASpecificBillSubjectResponse>
     {
         /// <summary>
         /// A word or phrase to search
