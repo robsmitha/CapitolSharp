@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CapitolSharp.Congress.CodeGeneration.Debug": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\CapitolSharp.Congress\\CapitolSharp.Congress.csproj"
+    }
+  }
+}

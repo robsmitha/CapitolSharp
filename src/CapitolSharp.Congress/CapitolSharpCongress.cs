@@ -1,26 +1,47 @@
-﻿using AutoMapper;
-using CapitolSharp.Congress.Stores;
-using System.Reflection;
+﻿using CapitolSharp.Congress.Common;
+using Newtonsoft.Json;
+using System.Net;
 
 namespace CapitolSharp.Congress
 {
-    public class CapitolSharpCongress(string apiKey)
+    public interface ICapitolSharpCongress
     {
-        private readonly ICongressApiClient api = new CongressApiClient(apiKey);
-        private readonly IMapper mapper = new MapperConfiguration(cfg => cfg.AddMaps(Assembly.GetExecutingAssembly())).CreateMapper();
+        Task<T?> SendAsync<T>(ProPublicaApiRequest<T> request, CancellationToken cancellationToken = default);
+    }
 
-        private IBills? _bills;
-        private ICommittees? _committees;
-        private ILobbying? _lobbying;
-        private IMembers? _members;
-        private IStatements? _statements;
-        private IVotes? _votes;
+    public class CapitolSharpCongress(HttpClient httpClient, ProPublicaApiSettings settings) : ICapitolSharpCongress
+    {
+        public async Task<T?> SendAsync<T>(ProPublicaApiRequest<T> function, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                var request = function.RequestMessage();
+                request.Headers.Add("X-API-Key", settings.ApiKey);
 
-        public IBills Bills => _bills ??= new Bills(api, mapper);
-        public ICommittees Committees => _committees ??= new Committees(api, mapper);
-        public ILobbying Lobbying => _lobbying ??= new Lobbying(api, mapper);
-        public IMembers Members => _members ??= new Members(api, mapper);
-        public IStatements Statements => _statements ??= new Statements(api, mapper);
-        public IVotes Votes => _votes ??= new Votes(api, mapper);
+                var response = await httpClient.SendAsync(request, cancellationToken);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync(cancellationToken);
+                    return JsonConvert.DeserializeObject<T>(json);
+                }
+
+                throw response.StatusCode switch
+                {
+                    HttpStatusCode.BadRequest => new ProPublicaApiException($"Bad Request – The request is improperly formed ({typeof(T)} )"),
+                    HttpStatusCode.Forbidden => new ProPublicaApiException($"Forbidden – The request did not include an authorization header ({typeof(T)} )"),
+                    HttpStatusCode.NotFound => new ProPublicaApiException($"Not Found – The specified record(s) could not be found ({typeof(T)} )"),
+                    HttpStatusCode.NotAcceptable => new ProPublicaApiException($"Not Acceptable – The requested format for the request isn’t json or xml ({typeof(T)})"),
+                    HttpStatusCode.InternalServerError => new ProPublicaApiException($"Internal Server Error – Problem with the api server. Try again later. ({typeof(T)})"),
+                    HttpStatusCode.ServiceUnavailable => new ProPublicaApiException($"Service Unavailable – The service is currently not working. Please try again later. ({typeof(T)})"),
+                    _ => new ProPublicaApiException($"Unhandled api response error. StatusCode: {response.StatusCode} ({typeof(T)})"),
+                };
+            }
+            catch (HttpRequestException)
+            {
+                // TODO: Edge cases (ProPublic Rate Limit, Transient Errors, etc.)
+                throw;
+            }
+        }
     }
 }
