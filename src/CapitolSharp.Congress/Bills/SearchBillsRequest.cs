@@ -3,15 +3,6 @@ using CapitolSharp.Congress.Common;
 
 namespace CapitolSharp.Congress
 {
-    public enum SearchBillsSortOption
-    {
-        [SerializedOption("date")]
-        Date,
-
-        [SerializedOption("_score")]
-        Score
-    }
-
     public class SearchBillsRequest : ProPublicaApiRequest<SearchBillsResponse>
     {
         /// <summary>
@@ -44,5 +35,14 @@ namespace CapitolSharp.Congress
             Method = HttpMethod.Get,
             RequestUri = new Uri(ApiServer + DataStore + Endpoint)
         };
+    }
+
+    public enum SearchBillsSortOption
+    {
+        [SerializedOption("date")]
+        Date,
+
+        [SerializedOption("_score")]
+        Score
     }
 }

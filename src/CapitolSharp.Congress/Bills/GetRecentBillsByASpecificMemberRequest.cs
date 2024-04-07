@@ -3,6 +3,34 @@ using CapitolSharp.Congress.Bills.GetRecentBillsByASpecificMember;
 
 namespace CapitolSharp.Congress.Bills
 {
+    /// <summary>
+    /// Get the 20 bills most recently introduced or updated by a particular member.
+    /// <para>Results can include more than one Congress.</para>
+    /// </summary>
+    public class GetRecentBillsByASpecificMemberRequest : ProPublicaApiRequest<GetRecentBillsByASpecificMemberResponse>
+    {
+        /// <summary>
+        /// The ID of the member to retrieve
+        /// </summary>
+        public string MemberId { get; set; } = "";
+
+        /// <summary>
+        /// The order of the results
+        /// </summary>
+        public GetRecentBillsByASpecificMemberTypeOption Type { get; set; }
+
+        internal override ProPublicaApiEndpoint Endpoint => new("/members/{0}/bills/{1}.json", MemberId, Type.Serialize());
+
+        /// <summary>
+        /// GET https://api.propublica.org/congress/v1/members/{member-id}/bills/{type}.json
+        /// </summary>
+        internal override HttpRequestMessage RequestMessage() => new()
+        {
+            Method = HttpMethod.Get,
+            RequestUri = new Uri(ApiServer + DataStore + Endpoint)
+        };
+    }
+
     public enum GetRecentBillsByASpecificMemberTypeOption
     {
         /// <summary>
@@ -41,33 +69,5 @@ namespace CapitolSharp.Congress.Bills
         [SerializedOption("vetoed")]
         Vetoed,
 
-    }
-
-    /// <summary>
-    /// Get the 20 bills most recently introduced or updated by a particular member.
-    /// <para>Results can include more than one Congress.</para>
-    /// </summary>
-    public class GetRecentBillsByASpecificMemberRequest : ProPublicaApiRequest<GetRecentBillsByASpecificMemberResponse>
-    {
-        /// <summary>
-        /// The ID of the member to retrieve
-        /// </summary>
-        public string MemberId { get; set; } = "";
-
-        /// <summary>
-        /// The order of the results
-        /// </summary>
-        public GetRecentBillsByASpecificMemberTypeOption Type { get; set; }
-
-        internal override ProPublicaApiEndpoint Endpoint => new("/members/{0}/bills/{1}.json", MemberId, Type.Serialize());
-
-        /// <summary>
-        /// GET https://api.propublica.org/congress/v1/members/{member-id}/bills/{type}.json
-        /// </summary>
-        internal override HttpRequestMessage RequestMessage() => new()
-        {
-            Method = HttpMethod.Get,
-            RequestUri = new Uri(ApiServer + DataStore + Endpoint)
-        };
     }
 }

@@ -12,15 +12,10 @@ namespace CapitolSharp.Congress.Common
 
         readonly string _format = format;
 
-        //public static implicit operator string(ProPublicaApiEndpoint d)
-        //{
-        //    return d._format;
-        //}
-
-        //public static implicit operator ProPublicaApiEndpoint(string d)
-        //{
-        //    return new ProPublicaApiEndpoint(d);
-        //}
+        public static implicit operator string(ProPublicaApiEndpoint d)
+        {
+            return d.ToString();
+        }
 
         public override string ToString()
         {

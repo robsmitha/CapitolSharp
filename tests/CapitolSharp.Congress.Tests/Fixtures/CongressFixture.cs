@@ -27,7 +27,7 @@ namespace CapitolSharp.Congress.Tests.Fixtures
             MockHttpHandler.Protected()
                 .Setup<Task<HttpResponseMessage>>(
                     "SendAsync",
-                    ItExpr.Is<HttpRequestMessage>(m => IsExpectedUri<T>(request.Endpoint.ToString(), m.RequestUri!)),
+                    ItExpr.Is<HttpRequestMessage>(m => IsExpectedUri<T>(request.Endpoint, m.RequestUri!)),
                     ItExpr.IsAny<CancellationToken>())
                 .ReturnsAsync(new HttpResponseMessage
                 {
