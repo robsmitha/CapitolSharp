@@ -27,7 +27,7 @@ namespace CapitolSharp.Congress.Tests.Fixtures
             MockHttpHandler.Protected()
                 .Setup<Task<HttpResponseMessage>>(
                     "SendAsync",
-                    ItExpr.Is<HttpRequestMessage>(m => IsExpectedUri<T>(request.Endpoint, m.RequestUri!)),
+                    ItExpr.Is<HttpRequestMessage>(m => IsExpectedUri(request, m)),
                     ItExpr.IsAny<CancellationToken>())
                 .ReturnsAsync(new HttpResponseMessage
                 {
@@ -36,10 +36,9 @@ namespace CapitolSharp.Congress.Tests.Fixtures
                 });
         }
 
-        private static bool IsExpectedUri<T>(string expected, Uri requestUri)
+        private static bool IsExpectedUri<T>(ProPublicaApiRequest<T> request, HttpRequestMessage httpRequest)
         {
-            var actual = requestUri.AbsoluteUri.Replace(ProPublicaApiRequest<T>.ApiServer + ProPublicaApiRequest<T>.DataStore, "");
-            return expected.Equals(actual, StringComparison.InvariantCultureIgnoreCase);
+            return request.Endpoint.ToString().Equals(httpRequest.RequestUri!.AbsoluteUri, StringComparison.InvariantCultureIgnoreCase);
         }
 
         public Task DisposeAsync() => Task.CompletedTask;

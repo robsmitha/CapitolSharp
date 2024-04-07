@@ -20,11 +20,9 @@ namespace CapitolSharp.Congress
         /// </summary>
         public string BillId { get; set; } = "";
 
+        /// <summary>
+        /// GET https://api.propublica.org/congress/v1/{congress}/bills/{bill-id}.json
+        /// </summary>
         internal override ProPublicaApiEndpoint Endpoint => new("{0}/bills/{1}.json", Congress, BillId);
-        internal override HttpRequestMessage RequestMessage() => new()
-        {
-            Method = HttpMethod.Get,
-            RequestUri = new Uri(ApiServer + DataStore + Endpoint)
-        };
     }
 }

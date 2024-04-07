@@ -8,6 +8,11 @@ namespace CapitolSharp.Congress.Common
 {
     public class ProPublicaApiEndpoint(string format, params object[] args)
     {
+        internal const string ApiServer = "https://api.propublica.org";
+
+        internal const string CongressDataStore = ApiServer + "/congress/v1";
+
+
         public object[] _args = args;
 
         readonly string _format = format;
@@ -19,7 +24,7 @@ namespace CapitolSharp.Congress.Common
 
         public override string ToString()
         {
-            return string.Format(_format, _args);
+            return CongressDataStore + string.Format(_format, _args);
         }
     }
 }

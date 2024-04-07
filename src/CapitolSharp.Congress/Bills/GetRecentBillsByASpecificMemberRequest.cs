@@ -19,16 +19,10 @@ namespace CapitolSharp.Congress.Bills
         /// </summary>
         public GetRecentBillsByASpecificMemberTypeOption Type { get; set; }
 
-        internal override ProPublicaApiEndpoint Endpoint => new("/members/{0}/bills/{1}.json", MemberId, Type.Serialize());
-
         /// <summary>
         /// GET https://api.propublica.org/congress/v1/members/{member-id}/bills/{type}.json
         /// </summary>
-        internal override HttpRequestMessage RequestMessage() => new()
-        {
-            Method = HttpMethod.Get,
-            RequestUri = new Uri(ApiServer + DataStore + Endpoint)
-        };
+        internal override ProPublicaApiEndpoint Endpoint => new("/members/{0}/bills/{1}.json", MemberId, Type.Serialize());
     }
 
     public enum GetRecentBillsByASpecificMemberTypeOption

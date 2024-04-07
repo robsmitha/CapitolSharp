@@ -3,6 +3,10 @@ using CapitolSharp.Congress.Common;
 
 namespace CapitolSharp.Congress
 {
+    /// <summary>
+    /// Use this request to search the title and full text of legislation by keyword to get the 20 most recent bills. 
+    /// Searches cover House and Senate bills from the 113th Congress through the current Congress (117th).
+    /// </summary>
     public class SearchBillsRequest : ProPublicaApiRequest<SearchBillsResponse>
     {
         /// <summary>
@@ -23,18 +27,11 @@ namespace CapitolSharp.Congress
         /// </summary>
         public SortDirectionOption SortDirection { get; set; } = SortDirectionOption.Descending;
 
-        internal override ProPublicaApiEndpoint Endpoint => new("/bills/search.json?query={0}&offset={1}&sort={2}&dir={3}", 
-            Query, Offset, Sort.Serialize(), SortDirection.Serialize());
-
         /// <summary>
         /// GET https://api.propublica.org/congress/v1/bills/search.json?query={query}&offset={&offset}&sort={sort}&dir={dir}
         /// </summary>
-        /// <returns></returns>
-        internal override HttpRequestMessage RequestMessage() => new()
-        {
-            Method = HttpMethod.Get,
-            RequestUri = new Uri(ApiServer + DataStore + Endpoint)
-        };
+        internal override ProPublicaApiEndpoint Endpoint => new("/bills/search.json?query={0}&offset={1}&sort={2}&dir={3}", 
+            Query, Offset, Sort.Serialize(), SortDirection.Serialize());
     }
 
     public enum SearchBillsSortOption
