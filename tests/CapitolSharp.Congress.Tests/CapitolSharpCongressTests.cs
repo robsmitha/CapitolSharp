@@ -17,7 +17,7 @@ namespace CapitolSharp.Congress.Tests
                 Query = "veterans"
             };
 
-            await fixture.MockHttpResponseMessage(request, "Bills/Contracts/SearchBills.json");
+            await fixture.MockHttpResponseMessage(request, "Bills/SearchBills.json");
 
             var response = await fixture.CapitolSharpCongress!.SendAsync(request);
 
@@ -33,7 +33,7 @@ namespace CapitolSharp.Congress.Tests
                 BillId = "hr4881"
             };
 
-            await fixture.MockHttpResponseMessage(request, "Bills/Contracts/GetASpecificBill.json");
+            await fixture.MockHttpResponseMessage(request, "Bills/GetASpecificBill.json");
 
             var response = await fixture.CapitolSharpCongress!.SendAsync(request);
 
@@ -49,7 +49,7 @@ namespace CapitolSharp.Congress.Tests
                 Type = GetRecentBillsByASpecificMemberTypeOption.Active
             };
 
-            await fixture.MockHttpResponseMessage(request, "Bills/Contracts/GetRecentBillsByASpecificMember.json");
+            await fixture.MockHttpResponseMessage(request, "Bills/GetRecentBillsByASpecificMember.json");
 
             var response = await fixture.CapitolSharpCongress!.SendAsync(request);
 

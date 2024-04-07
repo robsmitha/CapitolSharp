@@ -18,7 +18,7 @@ namespace CapitolSharp.CodeGeneration
 
             IncrementalValuesProvider<(string name, string @namespace, string content)> namesAndContents = jsonFiles.Select((file, cancellationToken) 
                 => (name: Path.GetFileNameWithoutExtension(file.Path),
-                @namespace: new DirectoryInfo(file.Path.Replace("\\\\", "\\")).Parent.Parent.Name, 
+                @namespace: new DirectoryInfo(file.Path.Replace("\\\\", "\\")).Parent.Name, 
                 content: file.GetText(cancellationToken)!.ToString()));
             
             initContext.RegisterSourceOutput(namesAndContents, (spc, args) =>

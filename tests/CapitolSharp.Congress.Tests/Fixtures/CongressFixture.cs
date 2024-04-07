@@ -10,7 +10,7 @@ namespace CapitolSharp.Congress.Tests.Fixtures
         public ICapitolSharpCongress? CapitolSharpCongress;
 
         public readonly Mock<HttpMessageHandler> MockHttpHandler = new(MockBehavior.Strict);
-        private readonly string ContractsDirectory = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+        private readonly string BinDirectory = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
 
         public CongressFixture()
         {
@@ -21,7 +21,7 @@ namespace CapitolSharp.Congress.Tests.Fixtures
 
         public async Task MockHttpResponseMessage<T>(ProPublicaApiRequest<T> request, string resourcePath)
         {
-            var resourceLocation = Path.Combine(ContractsDirectory, resourcePath.Replace("/", "\\"));
+            var resourceLocation = Path.Combine(BinDirectory, "_contracts", resourcePath.Replace("/", "\\"));
             var json = await File.ReadAllTextAsync(resourceLocation);
 
             MockHttpHandler.Protected()

@@ -17,11 +17,11 @@
   </ItemGroup>
   
   <ItemGroup>
-    <AdditionalFiles Include="Bills\Contracts\*.json" />
+    <AdditionalFiles Include="_contracts\**\*.json" />
   </ItemGroup>
   
   <ItemGroup>
-    <None Include="Bills\Contracts\**" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="_contracts\**\*.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>
