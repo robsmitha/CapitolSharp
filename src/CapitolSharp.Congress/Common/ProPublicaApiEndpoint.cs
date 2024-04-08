@@ -12,7 +12,6 @@ namespace CapitolSharp.Congress.Common
 
         internal const string CongressDataStore = ApiServer + "/congress/v1";
 
-
         public object[] _args = args;
 
         readonly string _format = format;

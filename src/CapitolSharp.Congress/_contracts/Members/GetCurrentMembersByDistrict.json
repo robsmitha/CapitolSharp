@@ -1,0 +1,26 @@
+{
+  "status": "OK",
+  "copyright": "Copyright (c) 2024 Pro Publica Inc. All Rights Reserved.",
+  "results": [
+    {
+      "id": "D000628",
+      "name": "Neal Dunn",
+      "first_name": "Neal",
+      "middle_name": "",
+      "last_name": "Dunn",
+      "suffix": "",
+      "role": "Representative",
+      "gender": "M",
+      "party": "R",
+      "times_topics_url": "",
+      "twitter_id": "drnealdunnfl2",
+      "facebook_account": "",
+      "youtube_id": "",
+      "seniority": "8",
+      "next_election": "2024",
+      "api_uri": "https://api.propublica.org/congress/v1/members/D000628.json",
+      "district": "2",
+      "at_large": false
+    }
+  ]
+}

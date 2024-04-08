@@ -1,0 +1,26 @@
+{
+  "status": "OK",
+  "copyright": "Copyright (c) 2024 Pro Publica Inc. All Rights Reserved.",
+  "results": [
+    {
+      "id": "P000599",
+      "name": "Bill Posey",
+      "first_name": "Bill",
+      "middle_name": "",
+      "last_name": "Posey",
+      "suffix": "",
+      "role": "Representative",
+      "gender": "M",
+      "party": "R",
+      "times_topics_url": "",
+      "twitter_id": "CongBillPosey",
+      "facebook_account": "bill.posey15",
+      "youtube_id": "CongressmanPosey",
+      "seniority": "16",
+      "next_election": "2024",
+      "api_uri": "https://api.propublica.org/congress/v1/members/P000599.json",
+      "district": "8",
+      "at_large": false
+    }
+  ]
+}
