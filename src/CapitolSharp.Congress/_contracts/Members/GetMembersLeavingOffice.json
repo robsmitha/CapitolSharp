@@ -1,0 +1,29 @@
+{
+  "status": "OK",
+  "copyright": " Copyright (c) 2024 Pro Publica Inc. All Rights Reserved.",
+  "results": [
+    {
+      "congress": "116",
+      "chamber": "House",
+      "num_results": 70,
+      "offset": 0,
+      "members": [
+        {
+          "id": "B001308",
+          "api_uri": "https://api.propublica.org/congress/v1/members/B001308.json",
+          "first_name": "Anthony",
+          "middle_name": "",
+          "last_name": "Brindisi",
+          "suffix": "",
+          "party": "D",
+          "state": "NY",
+          "district": "22",
+          "begin_date": "2019-01-03",
+          "end_date": "2021-01-03",
+          "status": "Defeated in general election",
+          "note": "Lost general election."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+    "status": "OK",
+    "copyright": "Copyright (c) 2024 Pro Publica Inc. All Rights Reserved.",
+    "results": [
+        {
+            "member_id": "B001308",
+            "num_results": "20",
+            "offset": "0",
+            "votes": [
+                {
+                    "member_id": "B001308",
+                    "chamber": "House",
+                    "congress": "116",
+                    "session": "2",
+                    "roll_call": "253",
+                    "vote_uri": "https://api.propublica.org/congress/v1/116/house/sessions/2/votes/253.json",
+                    "bill": {
+                        "bill_id": "hr6395-116",
+                        "number": "H R 6395",
+                        "sponsor_id": "S000510",
+                        "bill_uri": "https://api.propublica.org/congress/v1/116/bills/hr6395.json",
+                        "title": "To authorize appropriations for fiscal year 2021 for military activities of the Department of Defense and for military construction, to prescribe military personnel strengths for such fiscal year, and for other purposes.",
+                        "latest_action": "Message on Senate action sent to the House."
+                    },
+                    "amendment": {},
+                    "description": "William M. (Mac) Thornberry National Defense Authorization Act",
+                    "question": "On Passage, Objections of the President to the Contrary Notwithstanding",
+                    "result": "Passed",
+                    "date": "2020-12-28",
+                    "time": "19:05:00",
+                    "total": {
+                        "yes": 322,
+                        "no": 87,
+                        "present": 0,
+                        "not_voting": 21
+                    },
+                    "position": "Yes"
+                }
+            ]
+        }
+    ]
+}

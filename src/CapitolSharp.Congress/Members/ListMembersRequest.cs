@@ -8,7 +8,7 @@ namespace CapitolSharp.Congress.Members
     /// Use this request to get a list of members of a particular chamber in a particular Congress.
     /// The results include all members who have served in that congress and chamber, including members who are no longer in office.
     /// </summary>
-    public class ListMembersRequest : ProPublicaApiRequest<ListMembersResponse>
+    public class ListMembersRequest : ProPublicaApiRequestPaged<ListMembersResponse>
     {
         /// <summary>
         /// The congress
@@ -24,6 +24,6 @@ namespace CapitolSharp.Congress.Members
         /// <summary>
         /// GET https://api.propublica.org/congress/v1/{congress}/{chamber}/members.json
         /// </summary>
-        internal override ProPublicaApiEndpoint Endpoint => new("{0}/{1}/members.json", Congress, Chamber);
+        internal override ProPublicaApiEndpoint Endpoint => new("{0}/{1}/members.json?offset={2}", Congress, Chamber, Offset);
     }
 }

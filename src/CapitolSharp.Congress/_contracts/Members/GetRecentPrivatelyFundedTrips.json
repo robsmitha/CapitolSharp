@@ -1,0 +1,24 @@
+{
+  "status": "OK",
+  "copyright": "Copyright (c) 2024 Pro Publica Inc. All Rights Reserved.",
+  "congress": 118,
+  "num_results": 2328,
+  "offset": 0,
+  "results": [
+    {
+      "member_id": "M001136",
+      "api_uri": "https://api.propublica.org/congress/v1/members/M001136.json",
+      "display_name": "Lisa McClain",
+      "filing_type": "Original",
+      "traveler": "Lisa C. McClain",
+      "is_member": 1,
+      "departure_date": "2024-03-22",
+      "return_date": "2024-03-28",
+      "chamber": "House",
+      "destination": "Italy",
+      "sponsor": "Republican Main Street Partnership",
+      "document_id": "500027978",
+      "pdf_url": "https://disclosures-clerk.house.gov/gtimages/MT/2024/500027978.pdf"
+    }
+  ]
+}

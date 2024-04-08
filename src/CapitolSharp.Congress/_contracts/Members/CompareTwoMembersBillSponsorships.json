@@ -1,0 +1,28 @@
+{
+  "status": "OK",
+  "copyright": "Copyright (c) 2024 Pro Publica Inc. All Rights Reserved.",
+  "results": [
+    {
+      "first_member_api_uri": "https://api.propublica.org/congress/v1/members/B001308.json",
+      "second_member_api_uri": "https://api.propublica.org/congress/v1/members/C001094.json",
+      "chamber": "House",
+      "congress": "116",
+      "common_bills": "97",
+      "bills": [
+        {
+          "number": "H.R.307",
+          "api_uri": "https://api.propublica.org/congress/v1/116/bills/hr307.json",
+          "title": "To provide for partnerships among State and local governments, regional entities, and the private sector to preserve, conserve, and enhance the visitor experience at nationally significant battlefields of the American Revolution, War of 1812, and Civil War, and for other purposes.",
+          "sponsor_uri": "https://api.propublica.org/congress/v1/members/H001071.json",
+          "introduced_date": "2019-01-08",
+          "cosponsors": 102,
+          "committees": "House Natural Resources Committee",
+          "latest_major_action_date": "2020-12-08",
+          "latest_major_action": "Placed on the Union Calendar, Calendar No. 512.",
+          "first_member_date": "2019-04-30",
+          "second_member_date": "2019-01-08"
+        }
+      ]
+    }
+  ]
+}
