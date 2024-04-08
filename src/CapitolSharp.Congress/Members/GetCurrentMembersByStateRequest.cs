@@ -1,5 +1,5 @@
-﻿using CapitolSharp.Congress.Common;
-using CapitolSharp.Congress.Options;
+﻿using CapitolSharp.Congress.Utilities;
+using CapitolSharp.Congress.Enums;
 using CapitolSharp.Congress.Members.GetCurrentMembersByState;
 
 namespace CapitolSharp.Congress.Members
@@ -22,6 +22,6 @@ namespace CapitolSharp.Congress.Members
         /// <summary>
         /// GET https://api.propublica.org/congress/v1/members/{chamber}/{state}/current.json
         /// </summary>
-        internal override ProPublicaApiEndpoint Endpoint => new("members/{0}/{1}/current.json", Chamber.Serialize(), State);
+        internal override ProPublicaApiEndpoint Endpoint => new("members/{0}/{1}/current.json", Chamber, State);
     }
 }

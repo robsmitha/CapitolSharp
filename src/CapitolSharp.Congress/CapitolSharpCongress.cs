@@ -1,4 +1,4 @@
-﻿using CapitolSharp.Congress.Common;
+﻿using CapitolSharp.Congress.Utilities;
 using Newtonsoft.Json;
 using System.Net;
 

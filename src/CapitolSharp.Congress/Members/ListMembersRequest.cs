@@ -1,6 +1,6 @@
-﻿using CapitolSharp.Congress.Common;
+﻿using CapitolSharp.Congress.Utilities;
 using CapitolSharp.Congress.Members.ListMembers;
-using CapitolSharp.Congress.Options;
+using CapitolSharp.Congress.Enums;
 
 namespace CapitolSharp.Congress.Members
 {
@@ -24,6 +24,6 @@ namespace CapitolSharp.Congress.Members
         /// <summary>
         /// GET https://api.propublica.org/congress/v1/{congress}/{chamber}/members.json
         /// </summary>
-        internal override ProPublicaApiEndpoint Endpoint => new("{0}/{1}/members.json", Congress, Chamber.Serialize());
+        internal override ProPublicaApiEndpoint Endpoint => new("{0}/{1}/members.json", Congress, Chamber);
     }
 }

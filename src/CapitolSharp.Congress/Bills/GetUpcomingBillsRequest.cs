@@ -1,5 +1,5 @@
-﻿using CapitolSharp.Congress.Common;
-using CapitolSharp.Congress.Options;
+﻿using CapitolSharp.Congress.Utilities;
+using CapitolSharp.Congress.Enums;
 using CapitolSharp.Congress.Bills.GetUpcomingBills;
 
 namespace CapitolSharp.Congress.Bills
@@ -18,6 +18,6 @@ namespace CapitolSharp.Congress.Bills
         /// <summary>
         /// GET https://api.propublica.org/congress/v1/bills/upcoming/{chamber}.json
         /// </summary>
-        internal override ProPublicaApiEndpoint Endpoint => new("/bills/upcoming/{0}.json", Chamber.Serialize());
+        internal override ProPublicaApiEndpoint Endpoint => new("/bills/upcoming/{0}.json", Chamber);
     }
 }

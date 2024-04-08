@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapitolSharp.Congress.Common
+namespace CapitolSharp.Congress.Enums
 {
-    public class ProPublicaApiSettings
+    public enum ChamberOption
     {
-        public string ApiKey { get; set; }
+        House,
+        Senate,
+        Both,
     }
 }

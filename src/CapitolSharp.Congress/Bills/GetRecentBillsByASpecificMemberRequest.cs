@@ -1,6 +1,6 @@
-﻿using CapitolSharp.Congress.Common;
+﻿using CapitolSharp.Congress.Utilities;
 using CapitolSharp.Congress.Bills.GetRecentBillsByASpecificMember;
-using CapitolSharp.Congress.Options;
+using CapitolSharp.Congress.Enums;
 
 namespace CapitolSharp.Congress.Bills
 {
@@ -23,6 +23,6 @@ namespace CapitolSharp.Congress.Bills
         /// <summary>
         /// GET https://api.propublica.org/congress/v1/members/{member-id}/bills/{type}.json
         /// </summary>
-        internal override ProPublicaApiEndpoint Endpoint => new("/members/{0}/bills/{1}.json?offset={2}", MemberId, Type.Serialize(), Offset);
+        internal override ProPublicaApiEndpoint Endpoint => new("/members/{0}/bills/{1}.json?offset={2}", MemberId, Type, Offset);
     }
 }

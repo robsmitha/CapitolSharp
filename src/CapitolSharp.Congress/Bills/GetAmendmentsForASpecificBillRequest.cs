@@ -1,4 +1,4 @@
-﻿using CapitolSharp.Congress.Common;
+﻿using CapitolSharp.Congress.Utilities;
 using CapitolSharp.Congress.Bills.GetAmendmentsForASpecificBill;
 
 namespace CapitolSharp.Congress.Bills

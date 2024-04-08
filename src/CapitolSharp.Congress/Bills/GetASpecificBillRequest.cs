@@ -1,5 +1,5 @@
 ﻿using CapitolSharp.Congress.Bills.GetASpecificBill;
-using CapitolSharp.Congress.Common;
+using CapitolSharp.Congress.Utilities;
 
 namespace CapitolSharp.Congress.Bills
 {

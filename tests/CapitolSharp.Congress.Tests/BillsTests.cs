@@ -1,5 +1,5 @@
 ﻿using CapitolSharp.Congress.Bills;
-using CapitolSharp.Congress.Options;
+using CapitolSharp.Congress.Enums;
 using CapitolSharp.Congress.Tests.Fixtures;
 using Moq;
 

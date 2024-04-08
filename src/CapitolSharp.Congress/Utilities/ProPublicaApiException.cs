@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapitolSharp.Congress.Common
+namespace CapitolSharp.Congress.Utilities
 {
     public class ProPublicaApiException : Exception
     {

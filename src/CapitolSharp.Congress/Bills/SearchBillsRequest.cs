@@ -1,6 +1,6 @@
 ﻿using CapitolSharp.Congress.Bills.SearchBills;
-using CapitolSharp.Congress.Common;
-using CapitolSharp.Congress.Options;
+using CapitolSharp.Congress.Utilities;
+using CapitolSharp.Congress.Enums;
 
 namespace CapitolSharp.Congress.Bills
 {
@@ -26,12 +26,12 @@ namespace CapitolSharp.Congress.Bills
         /// <summary>
         /// Search results can be sorted in ascending or descending order
         /// </summary>
-        public SortDirectionOption SortDirection { get; set; } = SortDirectionOption.Descending;
+        public SortDirectionOption SortDirection { get; set; } = SortDirectionOption.Desc;
 
         /// <summary>
         /// GET https://api.propublica.org/congress/v1/bills/search.json?query={query}&sort={sort}&dir={dir}&offset={&offset}
         /// </summary>
         internal override ProPublicaApiEndpoint Endpoint => new("/bills/search.json?query={0}&sort={1}&dir={2}&offset={3}", 
-            Query, Offset, Sort.Serialize(), SortDirection.Serialize());
+            Query, Offset, Sort, SortDirection);
     }
 }
