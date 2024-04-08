@@ -30,6 +30,6 @@ namespace CapitolSharp.Congress.Members
         /// <summary>
         /// GET https://api.propublica.org/congress/v1/office_expenses/category/{category}/{year}/{quarter}.json
         /// </summary>
-        internal override ProPublicaApiEndpoint Endpoint => new("office_expenses/category/{1}/{2}/{3}.json?offset={4}", Category, Year, Quarter, Offset);
+        internal override ProPublicaApiEndpoint Endpoint => new("office_expenses/category/{0}/{1}/{2}.json?offset={3}", Category, Year, Quarter, Offset);
     }
 }
