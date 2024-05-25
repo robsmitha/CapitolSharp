@@ -14,7 +14,7 @@
             get
             {
                 var uri = new Uri(Endpoint);
-                var parameterList = QueryStringParameters.Keys.Select(k => $"{k}={Uri.EscapeDataString(QueryStringParameters[k])}").ToList();
+                var parameterList = QueryStringParameters.Where(kvp => !string.IsNullOrEmpty(kvp.Value)).Select(kvp => $"{kvp.Key}={Uri.EscapeDataString(kvp.Value)}").ToList();
                 var queryParameters = string.Join("&", parameterList);
                 var newQuery = string.IsNullOrEmpty(uri.Query) ? $"&{queryParameters}" : $"{uri.Query}&{queryParameters}";
                 return new Uri(uri.GetLeftPart(UriPartial.Path) + "?" + newQuery);
