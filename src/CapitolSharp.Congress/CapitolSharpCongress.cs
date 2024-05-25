@@ -1,6 +1,6 @@
-﻿using CapitolSharp.Congress.Core.Exceptions;
-using CapitolSharp.Congress.Core.Models;
-using CapitolSharp.Congress.Core.Settings;
+﻿using CapitolSharp.Congress.Exceptions;
+using CapitolSharp.Congress.Models;
+using CapitolSharp.Congress.Settings;
 using Newtonsoft.Json;
 using System.Net;
 
