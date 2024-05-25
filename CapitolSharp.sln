@@ -17,8 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4172E0CA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapitolSharp.Congress.Tests", "tests\CapitolSharp.Congress.Tests\CapitolSharp.Congress.Tests.csproj", "{6C9E8BFA-C4C7-4015-A6E2-F2F9164D20A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapitolSharp.Congress.Core", "src\CapitolSharp.Congress.Core\CapitolSharp.Congress.Core.csproj", "{C0CEA8F6-9A6D-47FA-A268-3E9E0CABBED1}"
-EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +32,6 @@ Global
 		{6C9E8BFA-C4C7-4015-A6E2-F2F9164D20A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C9E8BFA-C4C7-4015-A6E2-F2F9164D20A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C9E8BFA-C4C7-4015-A6E2-F2F9164D20A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C0CEA8F6-9A6D-47FA-A268-3E9E0CABBED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0CEA8F6-9A6D-47FA-A268-3E9E0CABBED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0CEA8F6-9A6D-47FA-A268-3E9E0CABBED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0CEA8F6-9A6D-47FA-A268-3E9E0CABBED1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,7 +39,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{18D55947-50AD-45ED-B715-94CE19AF2B01} = {1C5BE147-220D-43E3-AB49-47A8CA824C8D}
 		{6C9E8BFA-C4C7-4015-A6E2-F2F9164D20A6} = {4172E0CA-6630-44B8-BEE6-FAC1F0B7E699}
-		{C0CEA8F6-9A6D-47FA-A268-3E9E0CABBED1} = {1C5BE147-220D-43E3-AB49-47A8CA824C8D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0702F082-DDCE-4F67-AFE8-65E8DF99B5CA}
