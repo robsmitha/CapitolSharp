@@ -1,6 +1,8 @@
-﻿using CapitolSharp.Congress.Utilities;
+﻿using CapitolSharp.Congress.Core.Models;
+using CapitolSharp.Congress.Core.Settings;
 using Moq;
 using Moq.Protected;
+using System;
 using System.Net;
 
 namespace CapitolSharp.Congress.Tests.Fixtures
@@ -10,35 +12,36 @@ namespace CapitolSharp.Congress.Tests.Fixtures
         public ICapitolSharpCongress? CapitolSharpCongress;
 
         public readonly Mock<HttpMessageHandler> MockHttpHandler = new(MockBehavior.Strict);
-        private readonly string BinDirectory = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
 
         public CapitolSharpFixture()
         {
-            CapitolSharpCongress = new CapitolSharpCongress(new HttpClient(MockHttpHandler.Object), new ProPublicaApiSettings());
+            CapitolSharpCongress = new CapitolSharpCongress(new HttpClient(MockHttpHandler.Object), new CongressApiSettings());
         }
 
         public Task InitializeAsync() => Task.CompletedTask;
 
-        public async Task MockHttpResponseMessage<T>(ProPublicaApiRequest<T> request, string resourcePath)
+        public async Task MockHttpResponseMessage<T>(JsonFormatApiRequest<T> request, string resourcePath)
         {
-            var resourceLocation = Path.Combine(BinDirectory, "_contracts", resourcePath.Replace("/", "\\"));
-            var json = await File.ReadAllTextAsync(resourceLocation);
+            var resourceLocation = "https://smitha-cdn.s3.us-east-2.amazonaws.com/CapitolSharp/sample-json/";
+            using var client = new HttpClient();
+            var response = await client.GetAsync(resourceLocation + resourcePath);
 
-            MockHttpHandler.Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync",
-                    ItExpr.Is<HttpRequestMessage>(m => IsExpectedUri(request, m)),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.OK,
-                    Content = new StringContent(json)
-                });
-        }
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
 
-        private static bool IsExpectedUri<T>(ProPublicaApiRequest<T> request, HttpRequestMessage httpRequest)
-        {
-            return request.Endpoint.ToString().Equals(httpRequest.RequestUri!.AbsoluteUri, StringComparison.InvariantCultureIgnoreCase);
+                MockHttpHandler.Protected()
+                    .Setup<Task<HttpResponseMessage>>(
+                        "SendAsync",
+                        ItExpr.Is<HttpRequestMessage>(httpRequestMessge => request.Uri.Equals(httpRequestMessge.RequestUri)),
+                        ItExpr.IsAny<CancellationToken>())
+                    .ReturnsAsync(new HttpResponseMessage
+                    {
+                        StatusCode = HttpStatusCode.OK,
+                        Content = new StringContent(json)
+                    });
+
+            }
         }
 
         public Task DisposeAsync() => Task.CompletedTask;
