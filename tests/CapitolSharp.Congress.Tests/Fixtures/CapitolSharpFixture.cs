@@ -1,5 +1,4 @@
 ﻿using CapitolSharp.Congress.Models;
-using CapitolSharp.Congress.Settings;
 using Moq;
 using Moq.Protected;
 using System;

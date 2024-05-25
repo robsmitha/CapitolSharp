@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapitolSharp.Congress.Settings
+namespace CapitolSharp.Congress
 {
     public class CongressApiSettings
     {

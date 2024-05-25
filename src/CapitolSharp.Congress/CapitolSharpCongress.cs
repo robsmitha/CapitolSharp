@@ -1,6 +1,5 @@
 ﻿using CapitolSharp.Congress.Exceptions;
 using CapitolSharp.Congress.Models;
-using CapitolSharp.Congress.Settings;
 using Newtonsoft.Json;
 using System.Net;
 
