@@ -22,7 +22,7 @@ namespace CapitolSharp.Congress.Amendments
 		/// <summary>
 		/// The type of amendment. Value can be hamdt or samdt.
 		/// </summary>
-		public string AmendmentType { get; set; }
+		public AmendmentType AmendmentType { get; set; }
 
 		/// <summary>
 		/// The bill's assigned number. For example, the value can be 287.

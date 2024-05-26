@@ -22,7 +22,7 @@ namespace CapitolSharp.Congress.Hearings
 		/// <summary>
 		/// The chamber name. Value can be house, senate, or nochamber.
 		/// </summary>
-		public string Chamber { get; set; }
+		public Chamber Chamber { get; set; }
 
 		/// <summary>
 		/// The jacket number for the hearing. For example, the value can be 41365.

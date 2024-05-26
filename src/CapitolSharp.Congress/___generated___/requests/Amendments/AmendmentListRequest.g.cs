@@ -22,7 +22,7 @@ namespace CapitolSharp.Congress.Amendments
 		/// <summary>
 		/// The type of amendment. Value can be hamdt, samdt, or suamdt.
 		/// </summary>
-		public string AmendmentType { get; set; }
+		public AmendmentType AmendmentType { get; set; }
 
 		public override CongressApiEndpoint Endpoint => new("/amendment/{0}/{1}", Congress, AmendmentType);
 	}

@@ -22,7 +22,7 @@ namespace CapitolSharp.Congress.SenateCommunications
 		/// <summary>
 		/// The type of communication. Value can be ec, pm, or pom.
 		/// </summary>
-		public string CommunicationType { get; set; }
+		public CommunicationType CommunicationType { get; set; }
 
 		public override CongressApiEndpoint Endpoint => new("/senate-communication/{0}/{1}", Congress, CommunicationType);
 	}

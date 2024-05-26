@@ -22,7 +22,7 @@ namespace CapitolSharp.Congress.Committees
 		/// <summary>
 		/// The chamber name. Value can be house, senate, or joint.
 		/// </summary>
-		public string Chamber { get; set; }
+		public Chamber Chamber { get; set; }
 
 		public override CongressApiEndpoint Endpoint => new("/committee/{0}/{1}", Congress, Chamber);
 	}

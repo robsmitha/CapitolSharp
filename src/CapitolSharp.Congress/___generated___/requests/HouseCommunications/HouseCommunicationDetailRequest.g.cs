@@ -22,7 +22,7 @@ namespace CapitolSharp.Congress.HouseCommunications
 		/// <summary>
 		/// The type of communication. Value can be ec, ml, pm, or pt.
 		/// </summary>
-		public string CommunicationType { get; set; }
+		public CommunicationType CommunicationType { get; set; }
 
 		/// <summary>
 		/// The communication's assigned number. For example, the value can be 3324.

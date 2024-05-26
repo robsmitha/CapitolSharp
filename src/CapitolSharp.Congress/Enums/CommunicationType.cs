@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace CapitolSharp.Congress.Enums
 {
-    public enum SortDirection
+    public enum CommunicationType
     {
-        Asc,
-        Desc,
+        EC,
+        ML, 
+        PM,
+        POM,
+        PT
     }
 }

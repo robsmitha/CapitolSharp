@@ -22,7 +22,7 @@ namespace CapitolSharp.Congress.CommitteeReports
 		/// <summary>
 		/// The type of committee report. Value can be hrpt, srpt, or erpt.
 		/// </summary>
-		public string ReportType { get; set; }
+		public ReportType ReportType { get; set; }
 
 		/// <summary>
 		/// The committee report's assigned number. For example, the value can be 617.

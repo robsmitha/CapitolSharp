@@ -8,7 +8,7 @@ namespace CapitolSharp.Congress.Models
         /// Sort by update date in Congress.gov. Value can be updateDate+asc or updateDate+desc.
         /// </summary>
         public string Sort { get; set; } = "";
-        public SortDirection Direction { get; set; } = SortDirection.Desc;
+        public SortByDirection Direction { get; set; } = SortByDirection.DESC;
 
         public override Dictionary<string, string> QueryStringParameters => new (base.QueryStringParameters.Concat(new Dictionary<string, string>
         {

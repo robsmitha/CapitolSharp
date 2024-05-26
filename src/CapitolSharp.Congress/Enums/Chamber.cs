@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace CapitolSharp.Congress.Enums
 {
-    public enum ChamberOption
+    public enum Chamber
     {
-        House,
-        Senate,
-        Both,
+        HOUSE,
+        SENATE,
+        NOCHAMBER,
+        JOINT
     }
 }

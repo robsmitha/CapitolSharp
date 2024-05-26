@@ -22,7 +22,7 @@ namespace CapitolSharp.Congress.Members
 		/// <summary>
 		/// The two letter identifier for the state the member represents. For example, the value can be MI for Michigan.
 		/// </summary>
-		public string StateCode { get; set; }
+		public StateCode StateCode { get; set; }
 
 		/// <summary>
 		/// The district number for the district the member represents. For example, the value can be 10.
