@@ -8,7 +8,7 @@ namespace CapitolSharp.Congress.Enums
 {
     public enum SortByDirection
     {
-        ASC,
-        DESC,
+        asc,
+        desc,
     }
 }

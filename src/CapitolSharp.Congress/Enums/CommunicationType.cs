@@ -8,10 +8,10 @@ namespace CapitolSharp.Congress.Enums
 {
     public enum CommunicationType
     {
-        EC,
-        ML, 
-        PM,
-        POM,
-        PT
+        ec,
+        ml, 
+        pm,
+        pom,
+        pt
     }
 }

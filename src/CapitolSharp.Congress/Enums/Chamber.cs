@@ -8,9 +8,9 @@ namespace CapitolSharp.Congress.Enums
 {
     public enum Chamber
     {
-        HOUSE,
-        SENATE,
-        NOCHAMBER,
-        JOINT
+        house,
+        senate,
+        nochamber,
+        joint
     }
 }

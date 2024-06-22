@@ -34,18 +34,17 @@ namespace CapitolSharp.Congress
 
                 throw httpResponse.StatusCode switch
                 {
-                    HttpStatusCode.BadRequest => new CongressApiException($"Bad Request – The request is improperly formed ({typeof(T)} )"),
-                    HttpStatusCode.Forbidden => new CongressApiException($"Forbidden – The request did not include an authorization header ({typeof(T)} )"),
-                    HttpStatusCode.NotFound => new CongressApiException($"Not Found – The specified record(s) could not be found ({typeof(T)} )"),
+                    HttpStatusCode.BadRequest => new CongressApiBadRequestException($"Bad Request – The request is improperly formed ({typeof(T)} )"),
+                    HttpStatusCode.NotFound => new CongressApiNotFoundException($"The specified record(s) could not be found ({typeof(T)} )"),
+                    HttpStatusCode.ServiceUnavailable => new CongressApiServiceUnavailableException($"The service is currently not working. Please try again later. ({typeof(T)})"),
+                    HttpStatusCode.Forbidden => new CongressApiForbiddenException($"Forbidden – The request did not include an authorization header ({typeof(T)} )"),
                     HttpStatusCode.NotAcceptable => new CongressApiException($"Not Acceptable – The requested format for the request isn’t json or xml ({typeof(T)})"),
                     HttpStatusCode.InternalServerError => new CongressApiException($"Internal Server Error – Problem with the api server. Try again later. ({typeof(T)})"),
-                    HttpStatusCode.ServiceUnavailable => new CongressApiException($"Service Unavailable – The service is currently not working. Please try again later. ({typeof(T)})"),
                     _ => new CongressApiException($"Unhandled api response error. StatusCode: {httpResponse.StatusCode} ({typeof(T)})"),
                 };
             }
             catch (HttpRequestException)
             {
-                // TODO: Edge cases (Rate Limit, Transient Errors, etc.)
                 throw;
             }
         }

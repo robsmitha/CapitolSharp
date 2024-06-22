@@ -8,8 +8,8 @@ namespace CapitolSharp.Congress.Enums
 {
     public enum ReportType
     {
-        HRPT, 
-        SRPT,
-        ERPT
+        hrpt, 
+        srpt,
+        erpt
     }
 }

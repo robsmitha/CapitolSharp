@@ -8,13 +8,13 @@ namespace CapitolSharp.Congress.Enums
 {
     public enum BillType
     {
-        HR,
-        S,
-        HJRES,
-        SJRES,
-        HCONRES,
-        SCONRES,
-        HRES,
-        SRES
+        hr,
+        s,
+        hjres,
+        sjres,
+        hconres,
+        sconres,
+        hres,
+        sres
     }
 }
